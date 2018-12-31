@@ -1,0 +1,4 @@
+/* pages/study/study.wxss */
+text{
+  color: red;
+}
