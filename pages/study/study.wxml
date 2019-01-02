@@ -1,2 +1,7 @@
 <!--pages/study/study.wxml-->
-<text>666</text>
+<view class="first">
+  <text>this is a applets pages</text>
+</view>
+<view class="firstText">
+  {{text}}
+</view>

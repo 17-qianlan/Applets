@@ -1,5 +1,32 @@
 {
   "pages": [
-    "pages/study/study"
-  ]
+    "pages/study/study",
+    "pages/test/text",
+    "pages/template/template"
+  ],
+  "window": {
+    "backgroundColor": "#22b14c",
+    "enablePullDownRefresh": true,
+    "navigationBarBackgroundColor": "#60c5f1",
+    "navigationBarTitleText": "我的第一个小程序页面"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#31ad55",
+    "borderColor": "#000",
+    "list": [
+      {
+        "text": "bottom1",
+        "pagePath": "pages/test/text",
+        "selectedIconPath": "icon/home.png",
+        "iconPath": "icon/home_not.png"
+      },
+      {
+        "text": "bottom2",
+        "pagePath": "pages/study/study",
+        "selectedIconPath": "icon/menu.png",
+        "iconPath": "icon/menu_not.png"
+      }
+    ]
+  }
 }

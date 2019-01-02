@@ -1,4 +1,9 @@
 /* pages/study/study.wxss */
-text{
+view.first{
   color: red;
+}
+view.firstText{
+  height: 2000px;
+  color: green;
+  font-size: 25px;
 }

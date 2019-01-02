@@ -1,0 +1,5 @@
+/* pages/test/text.wxss */
+view{
+  font-size: 50rpx;
+  color: green;
+}

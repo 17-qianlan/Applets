@@ -1,0 +1,9 @@
+<!--pages/template/template.wxml-->
+<template name="test">
+  <!-- <view >
+    <text>{{item.title}}</text>
+    <image src="{{item.src}}"></image>
+  </view> -->
+  <text>{{title}}</text>
+  <image src="{{src}}"></image>
+</template>
