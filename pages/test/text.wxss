@@ -1,5 +1,11 @@
 /* pages/test/text.wxss */
+text{
+	display: block;
+}
 view{
   font-size: 50rpx;
   color: green;
+}
+image{
+	width: 750rpx;
 }

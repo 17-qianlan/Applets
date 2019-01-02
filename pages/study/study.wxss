@@ -7,3 +7,6 @@ view.firstText{
   color: green;
   font-size: 25px;
 }
+image{
+	width: 100;
+}

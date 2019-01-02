@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/study/study",
     "pages/test/text",
+    "pages/study/study",
     "pages/template/template"
   ],
   "window": {
-    "backgroundColor": "#22b14c",
+    "backgroundColor": "#0375A6",
     "enablePullDownRefresh": true,
-    "navigationBarBackgroundColor": "#60c5f1",
+    "navigationBarBackgroundColor": "#22B14C",
     "navigationBarTitleText": "我的第一个小程序页面"
   },
   "tabBar": {
@@ -16,17 +16,17 @@
     "borderColor": "#000",
     "list": [
       {
-        "text": "bottom1",
-        "pagePath": "pages/test/text",
-        "selectedIconPath": "icon/home.png",
-        "iconPath": "icon/home_not.png"
-      },
-      {
         "text": "bottom2",
-        "pagePath": "pages/study/study",
+        "pagePath": "pages/test/text",
         "selectedIconPath": "icon/menu.png",
         "iconPath": "icon/menu_not.png"
-      }
+      },
+			{
+				"text": "bottom1",
+				"pagePath": "pages/study/study",
+				"selectedIconPath": "icon/home.png",
+				"iconPath": "icon/home_not.png"
+			}
     ]
   }
 }

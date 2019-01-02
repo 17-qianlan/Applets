@@ -1,5 +1,7 @@
 <!--pages/test/text.wxml-->
 <import src="../template/template.wxml" />
 <!-- <template is="test" data="{{arr}}"/> -->
+<!-- <view>
+</view> -->
 <template is="test" wx:for="{{arr}}" data="{{...item}}" wx:key="*this" />
 <!-- <image src="../../images/1.jpg"></image> -->
