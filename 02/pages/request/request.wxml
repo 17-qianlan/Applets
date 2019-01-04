@@ -1,0 +1,12 @@
+<!--pages/request/request.wxml-->
+<image src="/images/bg.jpg" class="bg"></image>
+<view>
+  <form>
+    <view class="search">
+      <button>
+        <image src="../../images/icon/search.png"></image>
+      </button>
+      <input name="input" placeholder="请输入内容" cursor="2"/>
+    </view>
+  </form>
+</view>
