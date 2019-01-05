@@ -1,12 +1,28 @@
 <!--pages/request/request.wxml-->
-<image src="/images/bg.jpg" class="bg"></image>
-<view>
+<view class="container">
+  <image src="/images/bg.jpg" class="bg"></image>
   <form>
     <view class="search">
       <button>
-        <image src="../../images/icon/search.png"></image>
+        <image src="/images/icon/search.png"></image>
       </button>
-      <input name="input" placeholder="请输入内容" cursor="2"/>
+      <input type="text" name="input" placeholder="请输入内容" />
     </view>
   </form>
+  <view class="list">
+    <navgatior>哈哈</navgatior>
+    <navgatior>表白</navgatior>
+    <navgatior>等到</navgatior>
+    <navgatior>来了</navgatior>
+    <navgatior>请求</navgatior>
+    <navgatior>表白</navgatior>
+    <navgatior>到底</navgatior>
+    <navgatior>冷啦</navgatior>
+    <navgatior>表白</navgatior>
+    <navgatior>正在</navgatior>
+    <navgatior>偶偶</navgatior>
+    <navgatior>冷啦</navgatior>
+    <navgatior>等到</navgatior>
+    <navgatior>偶偶</navgatior>
+  </view>
 </view>
