@@ -2,28 +2,13 @@
 <view class="container">
   <view class="container-imgs">
     <view class="list">
-      <view class="item">
-        <image src="/images/2.jpg" mode="widthFix"></image>
-        <image src="/images/3.jpg" mode="widthFix"></image>
-        <image src="/images/4.jpg" mode="widthFix"></image>
-        <image src="/images/5.jpg" mode="widthFix"></image>
-        <image src="/images/6.jpg" mode="widthFix"></image>
-        <image src="/images/2.jpg" mode="widthFix"></image>
-        <image src="/images/3.jpg" mode="widthFix"></image>
-        <image src="/images/2.jpg" mode="widthFix"></image>
+      <view class="item" wx:for="{{images.left}}" wx:key="index">
+        <image src="{{item.thumbURL}}" mode="widthFix"></image>
       </view>
     </view>
     <view class="list list-left">
-      <view class="item">
-        <image src="/images/3.jpg" mode="widthFix"></image>
-        <image src="/images/2.jpg" mode="widthFix"></image>
-        <image src="/images/3.jpg" mode="widthFix"></image>
-        <image src="/images/4.jpg" mode="widthFix"></image>
-        <image src="/images/5.jpg" mode="widthFix"></image>
-        <image src="/images/6.jpg" mode="widthFix"></image>
-        <image src="/images/2.jpg" mode="widthFix"></image>
-        <image src="/images/3.jpg" mode="widthFix"></image>
-        <image src="/images/2.jpg" mode="widthFix"></image>
+      <view class="item" wx:for="{{images.right}}" wx:key="index">
+        <image src="{{item.thumbURL}}" mode="widthFix"></image>
       </view>
     </view>
   </view>

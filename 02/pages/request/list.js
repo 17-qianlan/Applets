@@ -21,29 +21,78 @@ Page({
    */
   data: {
     wd: '狗',
-    pn: 30,
-    rn: 100
+    pn: 40,
+    rn: 100,
+    images: {
+      left: [],
+      right: []
+    },
+    height: {
+      left: 0,
+      right: 0
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.requestUrl();
+    let data = this.requestData();
+    data.then(({ data }) => {
+      let d = this.dataArrange(data.data);
+      this.showData(d);
+    });
   },
-  requestUrl(){
+  //请求
+  requestData(){
     let codeUrl = `${URL}&pn=${this.data.pn}&rn=${this.data.rn}&wd=${this.data.wd}`;
-    console.log(codeUrl);
-    wx.request({
-      url: codeUrl,
-      success({ data }){
-        console.log(data);
-      },
-      fail(err){
-        console.log(err);
-      }
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: codeUrl,
+        success: resolve,
+        fail: reject
+      })
     })
   },
+  //整合
+  dataArrange(data){
+    let dataArrange = [];
+    data.forEach(item => {
+      if (item.adType) {
+        dataArrange.push(Object.assign({
+          thumbURL: item.thumbURL,
+          middleURL: item.middleURL,
+          objURL: item.middleURL
+        },this.zoom(item)));
+      }
+    })
+    return dataArrange;
+  },
+  //根据宽度定义高度(等比例)
+  zoom(img) {
+    let zoom = 100 / img.width;
+    return {
+      width: img.width * zoom,
+      height: img.height * zoom
+    }
+  },
+  //赋值/筛选
+  showData(data){
+    data.forEach(img => {
+      // 1 2 3 4
+      if (this.data.height.left <= this.data.height.right) {
+        this.data.images.left.push(img);
+        this.data.height.left += img.height;
+      } else {
+        this.data.images.right.push(img);
+        this.data.height.right += img.height;
+      }
+    })
+    this.setData({
+      images: this.data.images
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
