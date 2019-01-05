@@ -3,12 +3,12 @@
   <view class="container-imgs">
     <view class="list">
       <view class="item" wx:for="{{images.left}}" wx:key="index">
-        <image src="{{item.thumbURL}}" mode="widthFix"></image>
+        <image src="{{item.middleURL}}" mode="widthFix"></image>
       </view>
     </view>
     <view class="list list-left">
       <view class="item" wx:for="{{images.right}}" wx:key="index">
-        <image src="{{item.thumbURL}}" mode="widthFix"></image>
+        <image src="{{item.middleURL}}" mode="widthFix"></image>
       </view>
     </view>
   </view>

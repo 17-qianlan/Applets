@@ -5,8 +5,8 @@ let URL = 'https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj'
   queryExt: "",//关键字
   listNum: "总页数",
   display: "总结果",
-  pn: 30,//结果页数
-  rn: 30,//显示页的数目
+  pn: 30,//页数, 最大100
+  rn: 30,//显示每页项数, 最大60
   width: ,
   height: ,
   face: ,
@@ -21,8 +21,8 @@ Page({
    */
   data: {
     wd: '狗',
-    pn: 40,
-    rn: 100,
+    pn: 10,
+    rn: 30,
     images: {
       left: [],
       right: []
@@ -79,6 +79,7 @@ Page({
   //赋值/筛选
   showData(data){
     data.forEach(img => {
+      console.log('2');
       // 1 2 3 4
       if (this.data.height.left <= this.data.height.right) {
         this.data.images.left.push(img);
