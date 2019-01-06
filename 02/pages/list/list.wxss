@@ -1,0 +1,14 @@
+/* pages/request/list.wxss */
+@import "../template/image.wxss";
+.container-imgs{
+    width: 1vm;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.container-imgs .container-imgs-view {
+    display: flex;
+}
+.container-imgs .container-imgs-view .list{
+    flex: 1;
+    padding: 1rpx;
+}

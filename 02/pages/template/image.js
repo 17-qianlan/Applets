@@ -1,11 +1,11 @@
-
+// pages/template/image.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    like:['金毛', '拉布拉多', '小姐姐', '美短']
+
   },
 
   /**
@@ -14,12 +14,7 @@ Page({
   onLoad: function (options) {
 
   },
-  s(e){
-    let q = e.detail.value.input;
-    wx.navigateTo({
-      url: '/pages/list/list?q='+q
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

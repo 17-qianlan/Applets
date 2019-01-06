@@ -1,0 +1,7 @@
+<!--pages/template/image.wxml-->
+<template name="image">
+  <view class="item">
+    <image src="{{middleURL}}" mode="widthFix" class=".image" data-src="{{middleURL}}" bindtap="previewImg"></image>
+    <image class="download" src="/images/icon/download.png" data-src="{{middleURL}}" bindtap="download"></image>
+  </view>
+</template>

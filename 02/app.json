@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/request/list",
-    "pages/request/request"
+    "pages/request/request",
+    "pages/list/list",
+    "pages/template/image"
   ]
 }
