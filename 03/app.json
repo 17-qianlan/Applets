@@ -1,7 +1,10 @@
 {
   "pages": [
-    "pages/list/list",
     "pages/request/request",
+    "pages/list/list",
     "pages/template/image"
-  ]
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#00B050"
+  }
 }

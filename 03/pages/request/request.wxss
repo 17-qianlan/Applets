@@ -46,6 +46,7 @@
   background: transparent;
 }
 .box .form form button image {
+  display: block;
   width: 100%;
   height: 100%;
 }

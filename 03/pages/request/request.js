@@ -5,7 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    like: [
+        '美短',
+        '拉布拉多',
+        '英短',
+        '小姐姐',
+        '金毛'
+    ]
   },
 
   /**
@@ -14,7 +20,13 @@ Page({
   onLoad: function (options) {
 
   },
-
+  //提交搜索
+  submitSearch(e){
+    let q = e.detail.value.input;
+    wx.navigateTo({
+      url : '/pages/list/list?q=' + q
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

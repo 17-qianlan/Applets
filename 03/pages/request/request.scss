@@ -1,11 +1,12 @@
 /* pages/request/request.wxss */
-@function rpx($val){
+@function rpx($val) {
     @return $val * 1rpx;
 }
-.box{
+
+.box {
     width: rpx(750);
     height: 100vh;
-    .bg{
+    .bg {
         position: fixed;
         top: 0;
         left: 0;
@@ -13,7 +14,7 @@
         height: 100vh;
         z-index: -1;
     }
-    text{
+    text {
         display: block;
         width: 100%;
         height: rpx(90);
@@ -23,45 +24,46 @@
         line-height: rpx(90);
         text-align: center;
     }
-    .form{
+    .form {
         width: 90%;
         height: rpx(60);
         border: rpx(1) solid #000;
         border-radius: rpx(10);
         margin: auto;
-        form{
+        form {
             display: block;
             width: 90%;
             height: 100%;
             margin: auto;
-            button:after{
+            button:after {
                 border: 0;
             }
-            button{
+            button {
                 float: right;
                 width: rpx(60);
                 height: rpx(60);
                 padding: 0;
                 margin-right: rpx(-23);
                 background: transparent;
-                image{
+                image {
+                    display: block;
                     width: 100%;
                     height: 100%;
                 }
             }
-            input{
+            input {
                 width: 80%;
                 height: rpx(60);
                 line-height: rpx(50);
             }
         }
     }
-    .nav{
+    .nav {
         display: flex;
         flex-wrap: wrap;
         width: 90%;
         margin: rpx(10) auto 0;
-        navigator{
+        navigator {
             display: block;
             padding: 0 rpx(15);
         }

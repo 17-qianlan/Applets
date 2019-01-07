@@ -1,27 +1,33 @@
 /* pages/list/list.wxss */
 .box {
-  display: flex;
   width: 750rpx;
   height: 100vh;
 }
-.box .list {
+.box scroll-view {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.box scroll-view .container {
+  display: flex;
+}
+.box scroll-view .container .list {
   flex: 1;
 }
-.box .list .a {
+.box scroll-view .container .list .item-img {
   position: relative;
   width: 100%;
-  height: 100%;
 }
-.box .list .a .img {
+.box scroll-view .container .list .item-img .img {
   width: 100%;
   height: 100%;
 }
-.box .list .a .download {
+.box scroll-view .container .list .item-img .download {
   position: absolute;
   top: 10rpx;
   right: 10rpx;
-  width: 50rpx;
-  height: 50rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 
 /*# sourceMappingURL=list.wxss.map */

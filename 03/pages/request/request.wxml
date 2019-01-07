@@ -3,18 +3,14 @@
   <image src="/images/bg.jpg" class="bg"></image>
   <text>图片搜索</text>
   <view class="form">
-    <form>
-      <button>
+    <form bindsubmit="submitSearch">
+      <button form-type="submit">
         <image src="/images/icon/search.png"></image>
       </button>
-      <input type="text" />
+      <input type="text" name="input" placeholder="请输入内容"/>
     </form>
   </view>
   <view class="nav">
-    <navigator>美女</navigator>
-    <navigator>小姐姐</navigator>
-    <navigator>拉不拉多</navigator>
-    <navigator>美短</navigator>
-    <navigator>英短</navigator>
+    <navigator url="/pages/list/list?q={{item}}" wx:for="{{like}}" wx:key="{{index}}">{{item}}</navigator>
   </view>
 </view>
