@@ -3,5 +3,8 @@
     "pages/request/request",
     "pages/list/list",
     "pages/template/image"
-  ]
+  ],
+	"window": {
+		"navigationBarBackgroundColor": "#60C5F1"
+	}
 }
