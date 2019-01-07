@@ -1,4 +1,4 @@
-/* pages/request/list.wxss */
+/* pages/request/list.scss */
 @import "../template/image.wxss";
 .container-imgs{
     width: 1vm;

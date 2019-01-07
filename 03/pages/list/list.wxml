@@ -1,0 +1,16 @@
+<!--pages/list/list.wxml-->
+<import src="../template/image.wxml"/>
+<view class="box">
+  <view class="list">
+    <template is="list"></template>
+  </view>
+  <view class="list">
+    <template is="list"></template>
+  </view>
+  <view class="list">
+    <template is="list"></template>
+  </view>
+  <view class="list">
+    <template is="list"></template>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<!--pages/request/request.wxml-->
+<view class="box">
+  <image src="/images/bg.jpg" class="bg"></image>
+  <text>图片搜索</text>
+  <view class="form">
+    <form>
+      <button>
+        <image src="/images/icon/search.png"></image>
+      </button>
+      <input type="text" />
+    </form>
+  </view>
+  <view class="nav">
+    <navigator>美女</navigator>
+    <navigator>小姐姐</navigator>
+    <navigator>拉不拉多</navigator>
+    <navigator>美短</navigator>
+    <navigator>英短</navigator>
+  </view>
+</view>

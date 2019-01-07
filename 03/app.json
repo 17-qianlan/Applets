@@ -1,0 +1,7 @@
+{
+  "pages": [
+    "pages/list/list",
+    "pages/request/request",
+    "pages/template/image"
+  ]
+}

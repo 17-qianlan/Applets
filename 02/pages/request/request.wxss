@@ -1,7 +1,8 @@
-/* pages/request/request.wxss */
+/* pages/request/request.scss */
 view.container{
     width: 100vw;
     height: 100vh;
+    margin-top: 1rpx;
 }
 view .bg{
     position: fixed;

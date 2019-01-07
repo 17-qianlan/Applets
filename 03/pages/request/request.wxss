@@ -1,0 +1,68 @@
+/* pages/request/request.wxss */
+.box {
+  width: 750rpx;
+  height: 100vh;
+}
+.box .bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+.box text {
+  display: block;
+  width: 100%;
+  height: 90rpx;
+  margin-top: 150rpx;
+  color: #000;
+  font-size: 60rpx;
+  line-height: 90rpx;
+  text-align: center;
+}
+.box .form {
+  width: 90%;
+  height: 60rpx;
+  border: 1rpx solid #000;
+  border-radius: 10rpx;
+  margin: auto;
+}
+.box .form form {
+  display: block;
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+.box .form form button:after {
+  border: 0;
+}
+.box .form form button {
+  float: right;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 0;
+  margin-right: -23rpx;
+  background: transparent;
+}
+.box .form form button image {
+  width: 100%;
+  height: 100%;
+}
+.box .form form input {
+  width: 80%;
+  height: 60rpx;
+  line-height: 50rpx;
+}
+.box .nav {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 10rpx auto 0;
+}
+.box .nav navigator {
+  display: block;
+  padding: 0 15rpx;
+}
+
+/*# sourceMappingURL=request.wxss.map */

@@ -1,4 +1,4 @@
-/* pages/template/image.wxss */
+/* pages/template/image.scss */
 .item{
     position: relative;
 }

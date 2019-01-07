@@ -1,0 +1,7 @@
+<!--pages/template/image.wxml-->
+<template name="list">
+  <view class="a">
+    <image src="/images/2.jpg" mode="widthFix" class="img"></image>
+    <image src="/images/icon/download.png" mode="widthFix" class="download"></image>
+  </view>
+</template>

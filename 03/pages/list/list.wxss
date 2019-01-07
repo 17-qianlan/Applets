@@ -1,0 +1,27 @@
+/* pages/list/list.wxss */
+.box {
+  display: flex;
+  width: 750rpx;
+  height: 100vh;
+}
+.box .list {
+  flex: 1;
+}
+.box .list .a {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.box .list .a .img {
+  width: 100%;
+  height: 100%;
+}
+.box .list .a .download {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/*# sourceMappingURL=list.wxss.map */
