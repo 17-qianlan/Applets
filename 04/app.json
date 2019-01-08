@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "pages/request/request"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#209141"
+  }
+}

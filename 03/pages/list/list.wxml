@@ -3,7 +3,7 @@
 <view class="box">
   <scroll-view scroll-y bindscrolltolower="more" lower-threshold="{{50}}">
     <view class="container">
-      <view class="list" bindtap="previewImage" wx:for="{{images}}" wx:for-item="list" wx:for-index="i" wx:key="{{i}}">
+      <view class="list" wx:for="{{images}}" wx:for-item="list" wx:for-index="i" wx:key="{{i}}">
         <template is="list" wx:for="{{list}}" data="{{...item}}" wx:key="{{index}}"></template>
       </view>
     </view>

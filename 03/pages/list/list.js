@@ -1,5 +1,4 @@
-// pages/template/image.js
-let URL = 'https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&';
+import until from '../../untils/untils.js';
 //word=狗
 Page({
 
@@ -11,9 +10,10 @@ Page({
     height: [],
     origin: [],
     wd: '',
-    pn: 30,
-    rn: 60,
-    list: 4
+    pn: 1,
+    rn: 30,
+    list: 3,
+    copyRight: false
   },
 
   /**
@@ -33,7 +33,7 @@ Page({
   //请求
   request(){
     wx.showNavigationBarLoading();
-    let request = this.query();
+    let request = until.query(this.data.pn, this.data.rn, this.data.wd);
     request.then(res => {
       let newData = this.createData(res.data);
       this.formatData(newData);
@@ -42,7 +42,7 @@ Page({
     });
   },
   /*
-  * 这里有个bug, 如果在高度不是一样大的时候, 那么会出现乱序的情况
+  * 这里有个bug, 如果在高度不是一样大的时候, 会出现乱序的情况
   * */
   //准备和格式化数据格式
   formatData(data){
@@ -64,25 +64,7 @@ Page({
     this.data.images = new Array(this.data.list).fill([]).map( () => []);
     this.data.height = new Array(this.data.list).fill(0);
   },
-  //整合url, 准备请求
-  query(){
-    let url = URL + 'pn'+this.data.pn+'&rn='+this.data.rn+'&wd='+(this.data.wd || '狗狗');
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url,
-        success: resolve,
-        fail: reject
-      })
-    })
-  },
-  //使其高度和宽度成比例
-  zoom(img){
-    let zoom = 100 / img.width;
-    return {
-      width: img.width * zoom,
-      height: img.height * zoom
-    }
-  },
+
   //整合数据
   createData({data}){
     data.pop();
@@ -91,15 +73,16 @@ Page({
       d.push(Object.assign({
         thumbURL: item.thumbURL,
         middleURL: item.middleURL,
-        objURL: item.objURL
-      },this.zoom(item)))
+        objURL: until.encodeImgUrl(item.objURL)
+      },until.zoom(item)))
     })
     return d;
   },
   //下载
   download(e){
-    let url = e.currentTarget.dataset.src;
-    console.log(url);
+    let that = this;
+    let url = e.currentTarget.dataset[!this.data.copyRight? 'src': 'spare'];
+    //
     wx.downloadFile({
       url,
       success(res) {
@@ -107,28 +90,12 @@ Page({
           filePath: res.tempFilePath,
           fail(err) {
             if (err.errMsg === 'saveImageToPhotosAlbum:fail auth deny') {
-              wx.showModal({
-                title: '获取保存权限',
-                content: '您前面拒绝了保存权限, 我们需要它',
-                cancelText: '取消',
-                confirmText: '确定',
-                confirmColor: '#000',
-                success(res){
-                  wx.openSetting({
-                    success(res) {
-                      console.log(res);
-                      if (!res.authSetting['scope.writePhotosAlbum']) {
-                        wx.authorize({
-                          scope:'scope.writePhotosAlbum'
-                        })
-                      }
-                    },
-                    fail(err) {
-                      console.log(err);
-                    }
-                  })
-                }
+              until.authorization(err);
+            } else if (err.errMsg === 'saveImageToPhotosAlbum:fail TypeError: Path must be a string. Received []') {//如果上面打大图链接有版权, 那么将改用中图图片链接
+              that.setData({
+                copyRight: true
               });
+              that.download(e);
             }
           }
         })
@@ -137,7 +104,7 @@ Page({
   },
   //加载更多
   more(){
-    this.data.rn += 10;
+    this.data.pn ++;
     this.request();
   },
   //预览

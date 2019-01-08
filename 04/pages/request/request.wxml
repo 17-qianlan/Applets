@@ -1,0 +1,27 @@
+<!--pages/request/request.wxml-->
+<view class="container">
+  <view class="bg">
+    <image src="/images/train-index-adv-default.png"></image>
+  </view>
+  <view class="form">
+    <form>
+      <view class="address">
+        <input type="text" placeholder="出发地" />
+        <image src="/images/icon/arrow.png"></image>
+        <input type="text"  placeholder="目的地" />
+      </view>
+        <view class="time address">
+          <picker mode="date" value="{{chanceStartTime? chanceStartTime: start}}" start="{{start}}" bindchange="bindDateChange">
+            <input disabled="disabled" value="{{chanceStartTime? chanceStartTime: start}}" />
+          </picker>
+          <image src="/images/icon/arrow-right.png"></image>
+          <picker mode="date" value="{{chanceEndTime? chanceEndTime: endTime}}" start="{{start}}"  bindchange="bindDateEndChange">
+            <input disabled="disabled" value="{{chanceEndTime? chanceEndTime: endTime}}" />
+          </picker>
+        </view>
+      <button class="submit">
+        <text>查询</text>
+      </button>
+    </form>
+  </view>
+</view>

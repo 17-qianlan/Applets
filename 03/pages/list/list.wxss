@@ -25,9 +25,9 @@
 .box scroll-view .container .list .item-img .download {
   position: absolute;
   top: 10rpx;
-  right: 10rpx;
-  width: 30rpx;
-  height: 30rpx;
+  left: 10rpx;
+  width: 45rpx;
+  height: 45rpx;
 }
 
 /*# sourceMappingURL=list.wxss.map */

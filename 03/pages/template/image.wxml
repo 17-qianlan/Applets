@@ -1,7 +1,7 @@
 <!--pages/template/image.wxml-->
 <template name="list">
   <view class="item-img">
-    <image src="{{thumbURL}}" data-src= "{{middleURL}}"  mode="widthFix" class="img" wx:key="{{index}}"></image>
-    <image src="/images/icon/download.png" bindtap="download" data-src="{{thumbURL}}" mode="widthFix" class="download" wx:key="{{index}}"></image>
+    <image src="{{thumbURL}}" bindtap="previewImage" data-src= "{{middleURL}}"  mode="widthFix" class="img" wx:key="{{index}}"></image>
+    <image src="/images/icon/download.png" bindtap="download" data-src="{{objURL}}" data-spare="{{middleURL}}" mode="widthFix" class="download" wx:key="{{index}}"></image>
   </view>
 </template>
