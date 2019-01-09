@@ -1,15 +1,11 @@
-import until from '../../untils/untils.js';// 绝对路径
+// pages/template/interface.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    toDate: '',
-    start: until.toDate(),
-    chanceStartTime: '',
-    chanceEndTime: '',
-    endTime: until.toDate()
+
   },
 
   /**
@@ -18,36 +14,7 @@ Page({
   onLoad: function (options) {
 
   },
-  //选择后触发
-  bindDateChange(e){
-    let val = e.detail.value;
-    this.setData({
-      chanceStartTime: val,
-      start: val,
-      chanceEndTime: val
-    })
-  },
-  bindDateEndChange(e) {
-    let val = e.detail.value;
-    this.setData({
-      chanceEndTime: val
-    })
-  },
-  query(e){
-    let val = e.detail.value;
-    let arr = Object.values(val).filter(item => item);
-    if (arr.length > 3) {
-      let url = this.codeUrl(val);
-      wx.navigateTo({
-        url : '/pages/list/list?' + url
-      })
-    }
-  },
-  // 发送请求
-  codeUrl(val){
-    return Object.keys(val).map(item => item + '=' + val[item]).join('&');
 
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

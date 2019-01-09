@@ -4,22 +4,22 @@
     <image src="/images/train-index-adv-default.png"></image>
   </view>
   <view class="form">
-    <form>
+    <form bindsubmit="query">
       <view class="address">
-        <input type="text" placeholder="出发地" />
+        <input type="text" placeholder="出发地" name="from-station" value="重庆"/>
         <image src="/images/icon/arrow.png"></image>
-        <input type="text"  placeholder="目的地" />
+        <input type="text"  placeholder="目的地" name="to-station" value="昆明"/>
       </view>
         <view class="time address">
           <picker mode="date" value="{{chanceStartTime? chanceStartTime: start}}" start="{{start}}" bindchange="bindDateChange">
-            <input disabled="disabled" value="{{chanceStartTime? chanceStartTime: start}}" />
+            <input disabled="disabled" name="startTime" value="{{chanceStartTime? chanceStartTime: start}}" />
           </picker>
           <image src="/images/icon/arrow-right.png"></image>
           <picker mode="date" value="{{chanceEndTime? chanceEndTime: endTime}}" start="{{start}}"  bindchange="bindDateEndChange">
-            <input disabled="disabled" value="{{chanceEndTime? chanceEndTime: endTime}}" />
+            <input disabled="disabled" name="endTime" value="{{chanceEndTime? chanceEndTime: endTime}}" />
           </picker>
         </view>
-      <button class="submit">
+      <button class="submit" form-type="submit">
         <text>查询</text>
       </button>
     </form>

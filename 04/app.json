@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/request/request"
+    "pages/list/list",
+    "pages/request/request",
+    "pages/template/interface"
   ],
   "window": {
     "navigationBarBackgroundColor": "#209141"

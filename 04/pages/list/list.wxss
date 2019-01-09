@@ -1,0 +1,107 @@
+.container {
+  width: 750rpx;
+  height: 100vh;
+}
+.container .list {
+  width: 95%;
+  margin: auto;
+}
+.container .list .list-item {
+  width: 100%;
+  height: 200rpx;
+  font-size: 35rpx;
+}
+.container .list .list-item .list-item-top {
+  display: flex;
+  width: 100%;
+}
+.container .list .list-item .list-item-top view {
+  height: 150rpx;
+}
+.container .list .list-item .list-item-top .num {
+  width: 15%;
+  text-align: center;
+  line-height: 150rpx;
+}
+.container .list .list-item .list-item-top .active {
+  display: flex;
+  flex-wrap: wrap;
+  width: 25%;
+}
+.container .list .list-item .list-item-top .active image {
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 30rpx;
+}
+.container .list .list-item .list-item-top .active .station {
+  display: block;
+  width: 100rpx;
+  height: 50rpx;
+  margin-top: 32rpx;
+  text-align: center;
+}
+.container .list .list-item .list-item-top .active .time {
+  display: block;
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+}
+.container .list .list-item .list-item-top .arrow {
+  width: 20%;
+  font-size: 25rpx;
+}
+.container .list .list-item .list-item-top .arrow image {
+  display: block;
+  width: 100%;
+  height: 50rpx;
+  margin: 30rpx 5rpx 0;
+}
+.container .list .list-item .list-item-top .arrow .duration {
+  display: block;
+}
+.container .list .list-item .list-item-top .end {
+  position: relative;
+}
+.container .list .list-item .list-item-top .end .end-time {
+  text-align: center;
+}
+.container .list .list-item .list-item-top .end .postpone {
+  position: absolute;
+  right: 15rpx;
+  bottom: 35rpx;
+  color: red;
+  font-size: 25rpx;
+}
+.container .list .list-item .list-item-top .more {
+  position: relative;
+  width: 15%;
+}
+.container .list .list-item .list-item-top .more:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border: 20rpx solid #0052a4;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+.container .list .list-item .list-item-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100rpx;
+  border-top: 1rpx solid #ccc;
+}
+.container .list .list-item .list-item-bottom text {
+  display: block;
+  width: 33%;
+}
+
+/*# sourceMappingURL=list.wxss.map */

@@ -1,0 +1,5 @@
+<import src="../template/interface.wxml" />
+
+<view class="container">
+  <template is="interface" data="{{picker}}"></template>
+</view>

@@ -1,0 +1,29 @@
+<!--pages/template/interface.wxml-->
+<template name="interface">
+  <view class="list">
+    <view class="list-item">
+      <view class="list-item-top">
+        <view class="num">{{picker.num}}</view>
+        <view class="start active">
+          <image src="/images/icon/start.png"></image>
+          <text class="from station">{{picker.fromCity}}</text>
+          <text class="start-time time">{{picker.fromTime}}</text>
+        </view>
+        <view class="arrow">
+          <image src="/images/icon/arrow-right.png"></image>
+          <text class="duration">19小时5分钟</text>
+        </view>
+        <view class="end active">
+          <image src="/images/icon/end.png"></image>
+          <text class="to station">{{picker.endCity}}</text>
+          <text class="end-time time">{{picker.toTime}}</text>
+          <text class="postpone">+1</text>
+        </view>
+        <view class="more"></view>
+      </view>
+      <view class="list-item-bottom">
+        <text wx:for="{{[picker.ticketInfo]}}">{{item.firstseat.ticketName}}: {{item.firstseat.ticketNum}}</text>
+      </view>
+    </view>
+  </view>
+</template>
