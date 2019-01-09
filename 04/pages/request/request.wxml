@@ -6,9 +6,9 @@
   <view class="form">
     <form bindsubmit="query">
       <view class="address">
-        <input type="text" placeholder="出发地" name="from-station" value="重庆"/>
+        <input type="text" placeholder="出发地" name="from-station" value="北京"/>
         <image src="/images/icon/arrow.png"></image>
-        <input type="text"  placeholder="目的地" name="to-station" value="昆明"/>
+        <input type="text"  placeholder="目的地" name="to-station" value="上海"/>
       </view>
         <view class="time address">
           <picker mode="date" value="{{chanceStartTime? chanceStartTime: start}}" start="{{start}}" bindchange="bindDateChange">

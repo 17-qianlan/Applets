@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            function formatterDateTime() {
+                var date=new Date()
+                var month=date.getMonth() + 1
+                var datetime = date.getFullYear()
+                    + ""// "年"
+                    + (month >= 10 ? month : "0"+ month)
+                    + ""// "月"
+                    + (date.getDate() < 10 ? "0" + date.getDate() : date
+                        .getDate())
+                    + ""
+                    + (date.getHours() < 10 ? "0" + date.getHours() : date
+                        .getHours())
+                    + ""
+                    + (date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                        .getMinutes())
+                    + ""
+                    + (date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                        .getSeconds());
+                return datetime;
+            }
+
+            $.ajax({
+                type: 'post',
+                url: 'http://route.showapi.com/909-1',
+                dataType: 'json',
+                data: {
+                    "showapi_timestamp": formatterDateTime(),
+                    'showapi_appid': '62699', // appid
+                    'showapi_sign': '3fe9fafa5a6f477fbec7473ed115e9f1',  // 密钥
+                    "from":"北京",
+                    "to":"武汉",
+                    "trainDate":"2019-01-09"
+
+                },
+
+                error: function(XmlHttpRequest, textStatus, errorThrown) {
+                    alert("操作失败!");
+                },
+                success: function(result) {
+                    console.log(result) //console变量在ie低版本下不能用
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/list/list",
     "pages/request/request",
+    "pages/list/list",
     "pages/template/interface"
   ],
   "window": {

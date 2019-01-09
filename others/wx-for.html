@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        
+        <script>
+            (() => {
+                let obj = {
+                    firstseat:{
+                        downPrice:0,
+                        midPrice:0,
+                        price:564,
+                        ticketName:"一等座",
+                        ticketNum:"19",
+                        upPrice:0,
+                    },
+                    secondseat:{
+                        downPrice:0,
+                        midPrice:0,
+                        price:341.5,
+                        ticketName:"二等座",
+                        ticketNum:"0",
+                        upPrice:0,
+                    },
+                    specialseat:{
+                        downPrice:0,
+                        midPrice:0,
+                        price:636.5,
+                        ticketName:"特等座",
+                        ticketNum:"0",
+                        upPrice:0,
+                    }
+                }
+                let {values, keys , entries} = Object;
+                let arr = [values(obj)];
+                console.log(arr);
+            })();
+        </script>
+    </body>
+</html>

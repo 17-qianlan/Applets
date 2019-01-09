@@ -1,11 +1,11 @@
-import until from '../../untils/untils';
+import until from "../../untils/untils";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    picker: {
+    /*picker: {
       beginCity:"重庆西",
       endCity:"昆明南",
       fromCity:"重庆西",
@@ -40,7 +40,8 @@ Page({
       toCity:"昆明南",
       toTime:"19:02",
       usedTime:300,
-    }
+    }*/
+    picker: {}
   },
 
   /**
@@ -48,15 +49,16 @@ Page({
    */
   onLoad: function (options) {
     let val = options;
-    /*let requestPromise = this.request(val);
-    requestPromise.then(({data}) => {
-      let body = data['showapi_res_body'];
+    let requestPromise = this.request(val);
+    requestPromise.then(data => {
+      console.log(data);
+      /*let body = data["showapi_res_body"];
       let train = body.trains;
       console.log(body);
-      console.log(train);
+      console.log(train);*/
     }).catch( err => {
       console.log(err);
-    });*/
+    });
   },
   // 发送请求, 返回一个Promise
   request(val){
@@ -68,15 +70,14 @@ Page({
         data: {
           'showapi_timestamp': until.toDate('yes'),
           'showapi_appid': '62699', // appid
-          'showapi_sign': '2ce26a81953241dd8c424b5c8535b908',  // 密钥
-          'from':val['from-station'],
-          'to':val['to-station'],
-          'trainDate':val['startTime']
-
+          'showapi_sign': '3fe9fafa5a6f477fbec7473ed115e9f1',  // 密钥
+          'from': val['from-station'],
+          'to': val['to-station'],
+          'trainDate': val['startTime']
         },
         success: resolve,
         fail: reject
-      })
+      });
     });
   },
   /**
