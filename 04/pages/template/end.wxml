@@ -1,0 +1,4 @@
+<!--pages/template/end.wxml-->
+<template name="end">
+  <view class="msg">今天已经没有相关列车了, 可以选择往后一天查询</view>
+</template>

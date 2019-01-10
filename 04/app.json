@@ -2,6 +2,7 @@
   "pages": [
     "pages/request/request",
     "pages/list/list",
+    "pages/template/end",
     "pages/template/interface"
   ],
   "window": {

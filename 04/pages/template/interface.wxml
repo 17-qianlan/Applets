@@ -3,11 +3,11 @@
   <view class="list">
     <view class="list-item">
       <view class="list-item-top">
-        <view class="num">{{picker.num}}</view>
+        <view class="num">{{item.num}}</view>
         <view class="start active">
           <image src="/images/icon/start.png"></image>
-          <text class="from station">{{picker.fromCity}}</text>
-          <text class="start-time time">{{picker.fromTime}}</text>
+          <text class="from station">{{item.fromCity}}</text>
+          <text class="start-time time">{{item.fromTime}}</text>
         </view>
         <view class="arrow">
           <image src="/images/icon/arrow-right.png"></image>
@@ -15,14 +15,14 @@
         </view>
         <view class="end active">
           <image src="/images/icon/end.png"></image>
-          <text class="to station">{{picker.endCity}}</text>
-          <text class="end-time time">{{picker.toTime}}</text>
+          <text class="to station">{{item.endCity}}</text>
+          <text class="end-time time">{{item.toTime}}</text>
           <text class="postpone">+1</text>
         </view>
         <view class="more"></view>
       </view>
       <view class="list-item-bottom">
-        <text wx:for="{{[picker.ticketInfo.firstseat, picker.ticketInfo.secondseat, picker.ticketInfo.specialseat]}}" wx:key="{{index}}">{{item.ticketName}}: {{item.ticketNum}}</text>
+        <text wx:for="{{[item.ticketInfo.firstseat, item.ticketInfo.secondseat, item.ticketInfo.businessseat]}}" wx:key="{{index}}" wx:for-item="list-item">{{list-item.ticketName}}: {{list-item.ticketNum}}</text>
       </view>
     </view>
   </view>

@@ -1,0 +1,13 @@
+/* pages/template/end.wxss */
+@function rpx($val) {
+    @return $val * 1rpx;
+};
+
+
+.msg{
+    width: 90%;
+    margin: auto;
+    color: #00b0f0;
+    font-size: rpx(50);
+    font-weight: 800;
+}

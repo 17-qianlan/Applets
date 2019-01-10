@@ -1,5 +1,7 @@
 <import src="../template/interface.wxml" />
+<import src="../template/end.wxml" />
 
 <view class="container">
-  <template is="interface" data="{{picker}}"></template>
+  <template is="interface" wx:for="{{picker}}" data="{{item}}" wx:if="{{msg}}" wx:key="{{index}}"></template>
+  <!--<template is="end" data="{{picker}}" wx:else></template>-->
 </view>

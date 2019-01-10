@@ -107,4 +107,13 @@
   width: 33%;
 }
 
+/* pages/template/end.wxss */
+.msg {
+  width: 90%;
+  margin: auto;
+  color: #00b0f0;
+  font-size: 50rpx;
+  font-weight: 800;
+}
+
 /*# sourceMappingURL=list.wxss.map */

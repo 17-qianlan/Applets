@@ -1,0 +1,8 @@
+/* pages/template/end.wxss */
+.msg {
+  color: #00b0f0;
+  font-weight: 800;
+  text-align: center;
+}
+
+/*# sourceMappingURL=end.wxss.map */

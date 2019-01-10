@@ -1,3 +1,5 @@
+let {values, keys, entries} = Object;
+
 export default {
     addZero(obj){
         return obj > 9? obj : "0" + obj;
@@ -47,4 +49,14 @@ export default {
             });
         });
     },
+    arrange(data){
+        let arr = [];
+        data.forEach((item) => {
+            let tickets = values(item.ticketInfo);
+            item.ticketInfo =  Object.assign({tickets}, item);
+            delete item.ticketInfo;
+            arr.push(item);
+        })
+        return arr;
+    }
 };

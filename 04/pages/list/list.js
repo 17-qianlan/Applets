@@ -1,4 +1,5 @@
 import until from "../../untils/untils";
+import dataJson from '../../untils/data';
 Page({
 
   /**
@@ -6,42 +7,8 @@ Page({
    */
   data: {
     timestamp: '',
-    picker: {
-      beginCity:"重庆西",
-      endCity:"昆明南",
-      fromCity:"重庆西",
-      fromTime:"14:02",
-      num:"G2877",
-      ticketInfo:{
-        firstseat:{
-          downPrice:0,
-          midPrice:0,
-          price:564,
-          ticketName:"一等座",
-          ticketNum:"19",
-          upPrice:0,
-        },
-        secondseat:{
-          downPrice:0,
-          midPrice:0,
-          price:341.5,
-          ticketName:"二等座",
-          ticketNum:"0",
-          upPrice:0,
-        },
-        specialseat:{
-          downPrice:0,
-          midPrice:0,
-          price:636.5,
-          ticketName:"特等座",
-          ticketNum:"0",
-          upPrice:0,
-        }
-      },
-      toCity:"昆明南",
-      toTime:"19:02",
-      usedTime:300,
-    }
+    picker: [],
+    msg: true
   },
 
   /**
@@ -51,21 +18,13 @@ Page({
     let val = options;
     let requestDate = until.requestDate();
     requestDate.then(({ header }) => {
-      let date = until.toDate(0,new Date(header.Date))
+      let date = until.toDate(0,new Date(header.Date));
+      console.log(date);
       this.sendDate(date);
     }).catch(err => {
       console.log(err);
     })
-    let requestPromise = until.trainRequest(val, this.data.timestamp);
-    requestPromise.then(data => {
-      console.log(data);
-      /*let body = data["showapi_res_body"];
-      let train = body.trains;
-      console.log(body);
-      console.log(train);*/
-    }).catch( err => {
-      console.log(err);
-    });
+    this.ReceiveData(val);
   },
   // 发送请求, 返回一个Promise
   sendDate(date){
@@ -73,13 +32,33 @@ Page({
       timestamp: date
     })
   },
+  ReceiveData(val){
+    let requestPromise = until.trainRequest(val, this.data.timestamp);
+    requestPromise.then(({data}) => {
+      console.log(data);
+      let body = data["showapi_res_body"];
+      let {msg} = body;
+      if (msg === '查询失败,未找到相关信息!'){
+        this.setData({
+          msg: true
+        })
+      } else {
+        let train = body.trains;
+        this.setData({
+          picker: train
+        })
+        console.log(this.data.picker);
+      }
+    }).catch( err => {
+      console.log(err);
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
