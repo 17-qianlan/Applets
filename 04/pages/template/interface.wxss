@@ -1,1 +1,105 @@
-/* pages/template/interface.wxss */
+.list {
+  width: 95%;
+  margin: auto;
+}
+.list .list-item {
+  width: 100%;
+  height: 200rpx;
+  font-size: 35rpx;
+}
+.list .list-item .list-item-top {
+  display: flex;
+  width: 100%;
+}
+.list .list-item .list-item-top view {
+  height: 150rpx;
+}
+.list .list-item .list-item-top .num {
+  flex: 1.5;
+  color: #00b0f0;
+  font-weight: 800;
+  text-align: center;
+  line-height: 150rpx;
+}
+.list .list-item .list-item-top .active {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2.5;
+}
+.list .list-item .list-item-top .active image {
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 30rpx;
+}
+.list .list-item .list-item-top .active .station {
+  display: block;
+  width: 100rpx;
+  height: 50rpx;
+  margin-top: 32rpx;
+  text-align: center;
+}
+.list .list-item .list-item-top .active .time {
+  display: block;
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+}
+.list .list-item .list-item-top .arrow {
+  flex: 2;
+  font-size: 25rpx;
+}
+.list .list-item .list-item-top .arrow image {
+  display: block;
+  width: 100%;
+  height: 50rpx;
+  margin: 30rpx 5rpx 0;
+}
+.list .list-item .list-item-top .arrow .duration {
+  display: block;
+}
+.list .list-item .list-item-top .end {
+  position: relative;
+}
+.list .list-item .list-item-top .end .end-time {
+  text-align: center;
+}
+.list .list-item .list-item-top .end .postpone {
+  position: absolute;
+  right: 15rpx;
+  bottom: 35rpx;
+  color: red;
+  font-size: 25rpx;
+}
+.list .list-item .list-item-top .more {
+  position: relative;
+  flex: 1.5;
+}
+.list .list-item .list-item-top .more:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border: 20rpx solid #0052a4;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+.list .list-item .list-item-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100rpx;
+  border-top: 1rpx solid #ccc;
+}
+.list .list-item .list-item-bottom text {
+  display: block;
+  width: 33%;
+}
+
+/*# sourceMappingURL=interface.wxss.map */

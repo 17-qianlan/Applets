@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    /*picker: {
+    timestamp: '',
+    picker: {
       beginCity:"重庆西",
       endCity:"昆明南",
       fromCity:"重庆西",
@@ -40,8 +41,7 @@ Page({
       toCity:"昆明南",
       toTime:"19:02",
       usedTime:300,
-    }*/
-    picker: {}
+    }
   },
 
   /**
@@ -49,7 +49,14 @@ Page({
    */
   onLoad: function (options) {
     let val = options;
-    let requestPromise = this.request(val);
+    let requestDate = until.requestDate();
+    requestDate.then(({ header }) => {
+      let date = until.toDate(0,new Date(header.Date))
+      this.sendDate(date);
+    }).catch(err => {
+      console.log(err);
+    })
+    let requestPromise = until.trainRequest(val, this.data.timestamp);
     requestPromise.then(data => {
       console.log(data);
       /*let body = data["showapi_res_body"];
@@ -61,24 +68,10 @@ Page({
     });
   },
   // 发送请求, 返回一个Promise
-  request(val){
-    return new Promise((resolve, reject) => {
-      wx.request({
-        type: 'post',
-        url: 'http://route.showapi.com/909-1',
-        dataType: 'json',
-        data: {
-          'showapi_timestamp': until.toDate('yes'),
-          'showapi_appid': '62699', // appid
-          'showapi_sign': '3fe9fafa5a6f477fbec7473ed115e9f1',  // 密钥
-          'from': val['from-station'],
-          'to': val['to-station'],
-          'trainDate': val['startTime']
-        },
-        success: resolve,
-        fail: reject
-      });
-    });
+  sendDate(date){
+    this.setData({
+      timestamp: date
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

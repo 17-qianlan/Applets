@@ -6,17 +6,23 @@ Page({
    */
   data: {
     toDate: '',
-    start: until.toDate(),
+    start: '',
     chanceStartTime: '',
     chanceEndTime: '',
-    endTime: until.toDate()
+    endTime: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let requestDate = until.requestDate();
+    requestDate.then(({ header }) => {
+      let date = until.toDate(0,new Date(header.Date))
+      this.initDate(date);
+    }).catch(err => {
+      console.log(err);
+    })
   },
   //选择后触发
   bindDateChange(e){
@@ -42,6 +48,12 @@ Page({
         url : '/pages/list/list?' + url
       })
     }
+  },
+  initDate(date){
+    this.setData({
+      start: date,
+      endTime: date
+    })
   },
   // 发送请求
   codeUrl(val){

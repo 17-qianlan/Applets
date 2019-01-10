@@ -1,0 +1,106 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+.list{
+    width: 95%;
+    margin: auto;
+    .list-item{
+        width: 100%;
+        height: rpx(200);
+        font-size: rpx(35);
+        .list-item-top{
+            display: flex;
+            width: 100%;
+            view{
+                height: rpx(150);
+            }
+            .num{
+                flex: 1.5;
+                color: #00b0f0;
+                font-weight: 800;
+                text-align: center;
+                line-height: rpx(150);
+            }
+            .active{
+                display: flex;
+                flex-wrap: wrap;
+                flex: 2.5;
+                image{
+                    display: block;
+                    width: rpx(50);
+                    height: rpx(50);
+                    margin-top: rpx(30);
+                }
+                .station{
+                    display: block;
+                    width: rpx(100);
+                    height: rpx(50);
+                    margin-top: rpx(32);
+                    text-align: center;
+                }
+                .time{
+                    display: block;
+                    width: 100%;
+                    height: rpx(50);
+                    text-align: center;
+                }
+            }
+            .arrow{
+                flex: 2;
+                font-size: rpx(25);
+                image{
+                    display: block;
+                    width: 100%;
+                    height: rpx(50);
+                    margin: rpx(30) rpx(5) 0;
+                }
+                .duration{
+                    display: block;
+                }
+            }
+            .end{
+                position: relative;
+                .end-time{
+                    text-align: center;
+                }
+                .postpone{
+                    position: absolute;
+                    right: rpx(15);
+                    bottom: rpx(35);
+                    color: red;
+                    font-size: rpx(25);
+                }
+            }
+            .more{
+                position: relative;
+                flex: 1.5;
+            }
+            .more:after{
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                width: 0;
+                height: 0;
+                border: rpx(20) solid #0052a4;
+                border-left-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+            }
+        }
+        .list-item-bottom{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: rpx(100);
+            border-top: rpx(1) solid #ccc;
+            text{
+                display: block;
+                width: 33%;
+            }
+        }
+    }
+}
