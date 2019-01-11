@@ -18,8 +18,8 @@ Page({
   onLoad: function (options) {
     let requestDate = until.requestDate();
     requestDate.then(({ header }) => {
-      let date = until.toDate(0,new Date(header.Date))
-      this.initDate(date);
+      let date = until.toDate(new Date(header.Date))
+      this.initDate(date.dateTime);
     }).catch(err => {
       console.log(err);
     })

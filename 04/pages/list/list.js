@@ -18,13 +18,14 @@ Page({
     let val = options;
     let requestDate = until.requestDate();
     requestDate.then(({ header }) => {
-      let date = until.toDate(0,new Date(header.Date));
-      console.log(date);
-      this.sendDate(date);
+      console.log(new Date(header.Date));
+      let date = until.toDate(new Date(header.Date));
+      this.sendDate(date.dateTime);
+      console.log(date.formatterDateTime);
+      this.ReceiveData(val, date.formatterDateTime);
     }).catch(err => {
       console.log(err);
     })
-    this.ReceiveData(val);
   },
   // 发送请求, 返回一个Promise
   sendDate(date){
@@ -32,11 +33,11 @@ Page({
       timestamp: date
     })
   },
-  ReceiveData(val){
-    let requestPromise = until.trainRequest(val, this.data.timestamp);
-    requestPromise.then(({data}) => {
-      console.log(data);
-      let body = data["showapi_res_body"];
+  ReceiveData(val, date){
+    let requestPromise = until.trainRequest(val, date);
+    requestPromise.then(data => {
+      let body = data.data["showapi_res_body"];
+      let {trains} = body;
       let {msg} = body;
       if (msg === '查询失败,未找到相关信息!'){
         this.setData({
@@ -45,13 +46,16 @@ Page({
       } else {
         let train = body.trains;
         this.setData({
-          picker: train
+          picker: until.arrange(train)
         })
-        console.log(this.data.picker);
+        // console.log(this.data.picker);
       }
     }).catch( err => {
       console.log(err);
     });
+    /*this.setData({
+      picker: until.arrange(dataJson.train)
+    })*/
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

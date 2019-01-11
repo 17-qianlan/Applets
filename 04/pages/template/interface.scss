@@ -1,12 +1,16 @@
+@charset "UTF-8";
+
 @function rpx($val) {
     @return $val * 1rpx;
 }
+
 .list{
     width: 95%;
+    padding:rpx(10) 0 0 rpx(30);
     margin: auto;
     .list-item{
         width: 100%;
-        height: rpx(200);
+        height: auto;
         font-size: rpx(35);
         .list-item-top{
             display: flex;
@@ -24,7 +28,7 @@
             .active{
                 display: flex;
                 flex-wrap: wrap;
-                flex: 2.5;
+                flex: 3;
                 image{
                     display: block;
                     width: rpx(50);
@@ -33,9 +37,10 @@
                 }
                 .station{
                     display: block;
-                    width: rpx(100);
+                    width: rpx(113);
                     height: rpx(50);
                     margin-top: rpx(32);
+                    font-size: rpx(30);
                     text-align: center;
                 }
                 .time{
@@ -73,7 +78,7 @@
             }
             .more{
                 position: relative;
-                flex: 1.5;
+                flex: 1;
             }
             .more:after{
                 content: '';
@@ -95,11 +100,14 @@
             display: flex;
             flex-wrap: wrap;
             width: 100%;
-            height: rpx(100);
+            height: auto;
+            padding: rpx(10) 0;
             border-top: rpx(1) solid #ccc;
+            border-bottom: rpx(2) solid #0f9b42;
             text{
                 display: block;
                 width: 33%;
+                padding: rpx(10) 0;
             }
         }
     }

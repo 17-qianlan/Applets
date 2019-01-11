@@ -22,7 +22,7 @@
         <view class="more"></view>
       </view>
       <view class="list-item-bottom">
-        <text wx:for="{{[item.ticketInfo.firstseat, item.ticketInfo.secondseat, item.ticketInfo.businessseat]}}" wx:key="{{index}}" wx:for-item="list-item">{{list-item.ticketName}}: {{list-item.ticketNum}}</text>
+        <text wx:for="{{item.tickets}}" wx:key="{{index}}" wx:for-item="key">{{key.ticketName+': '+key.ticketNum}}</text>
       </view>
     </view>
   </view>
