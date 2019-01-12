@@ -18,13 +18,13 @@ Page({
 		// let arr = db.where('a', '>', 4444).select();
 		// let data = arr.slice(2, 4)
 		// console.log(data);
-		db.where('a', '=', 6666).delete().save();
+		// db.where('a', '=', 6666).delete().save();
 		// db.where('a', '=', 1111).update({a: 1111}).save();
 		// console.log(db.where('a', '>', 3).sequence('a').limit(2, 3).select());
 
 		// 'a,<,3&a,=,333', 'a', 'like', 3
 		// db.where('a,=,111&a,=,333&a,=,4444').delete();
-		// console.log(db.where('a,=,111&a,=,333&a,=,4444').delete());
+		console.log(db.where('a,=,111&a,=,333&a,=,4444').find());
 	},
 
 	/**

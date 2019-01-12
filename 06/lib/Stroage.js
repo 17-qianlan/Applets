@@ -39,9 +39,9 @@ export default class Storage{
         return wx.getStorageSync(dataName) || [];
     };
     // 提示在在查询前必须调用where函数
-    static getWhere(actions) {
-        if (this.whereFunction){
-            return this.whereFunction;
+    static getWhere(actions, findFn) {
+        if (findFn){
+            return findFn;
         } else {
             throw new Error(`在使用${actions}请先调用where函数`);
         }
@@ -75,7 +75,11 @@ export default class Storage{
     // 查询
     find(){
         let db = Storage.getDataB(this.dataName);
-        return db.find(Storage.getWhere.call(this, 'find'));
+        let returnArr = [];
+        for (const itm of this.whereArr) {
+            returnArr.push(db.find(Storage.getWhere.call(this, 'find', itm)));
+        }
+        return returnArr;
     };
     // 查找返回多个
     select(){
@@ -115,8 +119,9 @@ export default class Storage{
         return this;
     };
     // 查询,但不是真正的直接返回到页面的
-    where(...argument){
-        let [key, compare, value] = argument;
+    where(data){
+        this.whereArr = [];
+        /*let [key, compare, value] = argument;
         if (value === undefined) {
             value = compare;
             compare = '=';
@@ -130,7 +135,30 @@ export default class Storage{
             }
         } else {
             throw new Error('当前查询字段非法');
-        }
+        }*/
+        let strFirst = data.split('&');
+        let arr = [];
+        for (const item of strFirst) {
+            arr.push(item.split(','));
+        };
+        for (const item of arr) {
+            let [key, compare, value] = item;
+            if (value === undefined) {
+                value = compare;
+                compare = '=';
+            }
+            if (!(/NaN/.test(value*1))) {
+                value *= 1;
+            }
+            const compareFn = whereCompare[compare];
+            if (compareFn) {
+                this.whereArr.push((itm) => {
+                    return compareFn(itm[key], value);
+                })
+            } else {
+                throw new Error('当前查询字段非法');
+            }
+        };
         return this;
     };
     // 分页返回
