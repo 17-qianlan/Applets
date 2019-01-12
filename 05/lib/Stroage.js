@@ -35,12 +35,37 @@ export default class Storage{
 
     };
     // 静态方法  获取数据
-    static getDataB(dataName){
+    static getDataB(dataName) {
         return wx.getStorageSync(dataName) || [];
+    };
+    // 提示在在查询前必须调用where函数
+    static getWhere(actions) {
+        if (this.whereFunction.length > 0){
+            return this.whereFunction;
+        } else {
+            throw new Error(`在使用${actions}请先调用where函数`);
+        }
     };
     // 保存
     save(){
         let db = Storage.getDataB(this.dataName);
+        // 删除
+        if (this.cache.delete) {
+            db = db.filter( item => {
+                return !this.cache.delete.where(item);
+            })
+        }
+        // 更新 缓存
+        if (this.cache.update) {
+            db.forEach(item => {
+                if (this.cache.update.where(item)) {
+                    // 接收到一个布尔值
+                    // 这里使用的是合并, 也就是在有是修改, 否则添加, 删除使用的是delete
+                    Object.assign(item, this.cache.update.data);
+                }
+            });
+        };
+        //保存 缓存
         if (this.cache.add) {
             db.push(...this.cache.add);
         };
@@ -50,12 +75,26 @@ export default class Storage{
     // 查询
     find(){
         let db = Storage.getDataB(this.dataName);
-        return db.find(this.whereFunction);
+        db = db.find(Storage.getWhere.call(this, 'find'))
+        return db;
+    };
+    // 查找多个
+    select(){
+        let db = Storage.getDataB(this.dataName);
+        let data = db.filter(Storage.getWhere.call(this, 'select'));
+        this.sortFn && data.sort(this.sortFn);
+        return this.spliceArr ? data.slice(...this.spliceArr) : data;
+    };
+    // sort 排序  asc 升序 desc 降序
+    sequence(key, sort='asc') {
+        this.sortFn = ((a, b) => {
+            return /desc/i.test(sort)? b[key] - a[key] : a[key] - b[key];
+        })
+        return this;
     };
     // 添加
     add(data){
         if (Array.isArray(data)) {
-            console.log(1);
             data.forEach(item => {
                 this.add(item);
             });
@@ -67,24 +106,68 @@ export default class Storage{
         return this;
     };
     // 修改
-    update(){
-
+    update(data){
+        if (/object/.test(typeof data)) {
+            this.cache.update = {
+                data,
+                where: Storage.getWhere.call(this, 'update')
+            }
+        }
+        return this;
     };
-    // 查询,但是不是真正的直接返回到页面的
+    // 查询,但不是真正的直接返回到页面的
     where(...argument){
-        let [key, compare, value] = argument;
-        if (!value) {
+        this.whereFunction = [];
+        for (const obj of argument) {
+            let [key, compare, value] = obj;
+            if (value === undefined) {
+                value = compare;
+                compare = '=';
+            }
+            const compareFn = whereCompare[compare];
+            if (compareFn) {
+                this.whereFunction.push((item) => {
+                    return compareFn(item[key], value);
+                })
+            } else {
+                throw new Error('当前查询字段非法');
+            }
+        };
+        console.log(this.whereFunction);
+        /*let [key, compare, value] = argument;
+        if (value === undefined) {
             value = compare;
             compare = '=';
         }
         const compareFn = whereCompare[compare];
         if (compareFn) {
             this.whereFunction = (item) => {
+                // 上面使用了forEach, 所以这里相当于开了一个循环, 每次item都在变
+                // 然后再调用最上面的方法, 接收到一个布尔值, 然后返回给上面的循环体
                 return compareFn(item[key], value);
             }
         } else {
-            throw new Error('当前查询字段非法')
+            throw new Error('当前查询字段非法');
+        }*/
+        return this;
+    };
+    // 分页返回
+    limit(start, end){
+        if ( end === undefined) {
+            end = start;
+            start = 0;
+        } else {
+            --start;
+            end += start;
+        }
+        this.spliceArr = [start, end];
+        return this;
+    };
+
+    delete() {
+        this.cache.delete = {
+            where: Storage.getWhere.call(this, 'delete')
         }
         return this;
-    }
+    };
 }

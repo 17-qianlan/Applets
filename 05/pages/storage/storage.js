@@ -13,10 +13,15 @@ Page({
 	 */
 	onLoad: function (options) {
 		let db = new Storage('storage');
-		// db.add([{a: 222},{a: 111}, {b: 333}]).save();
+		// db.add([{a: 3},{a: 111}, {a: 333},{a: 4444}, {a: 5555}, {a: 6666},{a: 7777}]).save();
 		// db.where('a', '<', '1');
-		// console.log(db.where('a', '!=', 3).find());
-		console.log(db.where('b', 'like', 3).find());
+		// let arr = db.where('a', '>', 4444).select();
+		// let data = arr.slice(2, 4)
+		// console.log(data);
+		// db.where('a', '=', 6666).delete().save();
+		// db.where('a', '=', 1111).update({a: 1111}).save();
+		// console.log(db.where('a', '>', 3).sequence('a').limit(2, 3).select());
+		console.log(db.where(['a', 'like', 3], ['a', '=', 333], ['a', '=', 7777]).find());
 	},
 
 	/**
