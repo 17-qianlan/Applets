@@ -39,9 +39,9 @@ export default class Storage{
         return wx.getStorageSync(dataName) || [];
     };
     // 提示在在查询前必须调用where函数
-    static getWhere(actions, findFn) {
-        if (findFn){
-            return findFn;
+    static getWhere(actions) {
+        if (this.whereFunction){
+            return this.whereFunction;
         } else {
             throw new Error(`在使用${actions}请先调用where函数`);
         }
@@ -51,13 +51,10 @@ export default class Storage{
         let db = Storage.getDataB(this.dataName);
         // 删除
         if (this.cache.delete) {
-            for (const itm of this.cache.delete) {
-                db = db.filter( item => {
-                    return !itm(item);
-                });
-
-            };
-        };
+            db = db.filter( item => {
+                return !this.cache.delete.where(item);
+            })
+        }
         // 更新 缓存
         if (this.cache.update) {
             db.forEach(item => {
@@ -78,11 +75,7 @@ export default class Storage{
     // 查询
     find(){
         let db = Storage.getDataB(this.dataName);
-        let returnArr = [];
-        for (const itm of this.whereArr) {
-            returnArr.push(db.find(Storage.getWhere.call(this, 'find', itm)));
-        }
-        return returnArr;
+        return db.find(Storage.getWhere.call(this, 'find'));
     };
     // 查找返回多个
     select(){
@@ -122,31 +115,22 @@ export default class Storage{
         return this;
     };
     // 查询,但不是真正的直接返回到页面的
-    where(data){
-        this.whereArr = [];
-        let strFirst = data.split('&');
-        let arr = [];
-        for (const item of strFirst) {
-            arr.push(item.split(','));
-        };
-        for (const item of arr) {
-            let [key, compare, value] = item;
-            if (value === undefined) {
-                value = compare;
-                compare = '=';
+    where(...argument){
+        let [key, compare, value] = argument;
+        if (value === undefined) {
+            value = compare;
+            compare = '=';
+        }
+        const compareFn = whereCompare[compare];
+        if (compareFn) {
+            this.whereFunction = (item) => {
+                // 上面使用了forEach, 所以这里相当于开了一个循环, 每次item都在变
+                // 然后再调用最上面的方法, 接收到一个布尔值, 然后返回给上面的循环体
+                return compareFn(item[key], value);
             }
-            if (!(/NaN/.test(value*1))) {
-                value *= 1;
-            }
-            const compareFn = whereCompare[compare];
-            if (compareFn) {
-                this.whereArr.push((itm) => {
-                    return compareFn(itm[key], value);
-                })
-            } else {
-                throw new Error('当前查询字段非法');
-            }
-        };
+        } else {
+            throw new Error('当前查询字段非法');
+        }
         return this;
     };
     // 分页返回
@@ -163,12 +147,8 @@ export default class Storage{
     };
 
     delete() {
-        /*this.cache.delete = {
+        this.cache.delete = {
             where: Storage.getWhere.call(this, 'delete')
-        }*/
-        this.cache.delete = [];
-        for (const itm of this.whereArr) {
-            this.cache.delete.push(Storage.getWhere.call(this, 'delete', itm));
         }
         return this;
     };
