@@ -18,19 +18,27 @@ event.addEvent('onLoad', function(b) {
   console.log('我是test事件触发器4');
 })*/
 event.addEvent('onLoad', function() {
-  event.test();
+  // true 以本体返回  array以数组形式返回 不包含命名空间, 否则以data值返回
+  console.log(event.test().findNameSpace('onTest', 'array'))
 });
 event.addEvent('test', function() {
-  console.log('我是test事件1');
+  // console.log('我是test事件1');
+  return {
+    nameSpaces: 'onTest',
+    data: 66666
+  }
 })
-event.onceEvent('test', function() {
+
+/*event.onceEvent('test', function() {
   console.log('我是test事件3');
-})
+})*/
 event.addEvent('test', function() {
   console.log('我是test事件2');
+  return 9999;
 });
+
 event.addEvent('onLoad', function() {
-  event.test('8888');
+  console.log(event.test().findNameSpace());
 });
 // event.removeEvent('onLoad');
 
