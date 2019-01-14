@@ -30,7 +30,7 @@ event.addEvent('test', function() {
   console.log('我是test事件2');
 });
 event.addEvent('onLoad', function() {
-  event.test();
+  event.test('8888');
 });
 // event.removeEvent('onLoad');
 

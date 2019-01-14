@@ -8,6 +8,7 @@ export default class Event {
     // 函数在这里执行
     static createEventHandle(eType, that){
         Reflect.set(that, eType, function(...argument){
+            console.log(argument);
             let page = this;
             let eTypeFn = Array.from(Reflect.get(that.events, eType));
             (function recur(){
