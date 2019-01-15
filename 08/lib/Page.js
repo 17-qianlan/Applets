@@ -6,7 +6,7 @@ export default class PageModule extends Event {
         let that = this;
         // 这个是挂载this对象到page上, 方便需要时获取, 而且要写在这里, 否则app的值有可能是undefined
         // 因为有个先执行, 后执行的过程(在APP内)
-        // 还有可以携带参数到需要的页面, 比如router, 现在是在哎app里执行, 是可以在哪儿拿到route的(app.page.page)
+        // 还有可以携带参数到需要的页面, 比如router, 现在是在app里执行, 是可以在哪儿拿到route的(app.page.page)
         this.onceEvent('onLoad', function() {
             Reflect.set(app, 'page', {
                 example: that,

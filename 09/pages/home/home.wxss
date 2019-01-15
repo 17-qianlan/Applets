@@ -1,0 +1,143 @@
+/* pages/home/home.wxss */
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+#music {
+  position: relative;
+  width: 750rpx;
+  height: auto;
+}
+#music .header-nav {
+  width: 100%;
+  height: 260rpx;
+  background: #b3d4db;
+}
+#music .header-nav .header-nav-list {
+  display: flex;
+  width: 51%;
+  height: 80rpx;
+  margin: auto;
+}
+#music .header-nav .header-nav-list navigator {
+  padding: 0 20rpx;
+  font-size: 45rpx;
+}
+#music .header-nav .header-nav-list .on {
+  color: #fff;
+  background: linear-gradient(#fff, #fff) no-repeat center bottom/80% 10rpx;
+}
+#music .banner {
+  width: 100%;
+  height: 500rpx;
+  margin-top: -150rpx;
+}
+#music .banner .banner-list {
+  height: 100%;
+}
+#music .banner .banner-list swiper {
+  height: 100%;
+}
+#music .banner .banner-list swiper swiper-item {
+  height: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+#music .banner .banner-list swiper swiper-item image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+#music .assort {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: auto;
+  padding: 30rpx 20rpx;
+}
+#music .assort .assort-list {
+  width: 100rpx;
+  height: 150rpx;
+}
+#music .assort .assort-list image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#music .assort .assort-list text {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+#music .song {
+  padding: 0 20rpx;
+}
+#music .song .song-title {
+  width: 100%;
+  height: 75rpx;
+}
+#music .song .song-title navigator {
+  display: block;
+}
+#music .song .song-title navigator image {
+  width: 60rpx;
+  vertical-align: bottom;
+}
+#music .song .song-title navigator text {
+  display: inline-block;
+  vertical-algin: bottom;
+  font-size: 35rpx;
+}
+#music .song .song-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#music .song .song-list .song-list-item {
+  width: 32%;
+  padding: 0 16rpx 10rpx 0;
+}
+#music .song .song-list .song-list-item image {
+  width: 100%;
+  height: 100%;
+}
+#music .song .song-list .song-list-item text {
+  display: block;
+  text-align: left;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#music .song .song-list .song-list-item:nth-child(3n) {
+  padding: 0;
+}
+#music .player {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  padding: 10rpx;
+  overflow: hidden;
+  z-index: 1000;
+}
+#music .player text {
+  display: block;
+  line-height: 100rpx;
+}
+#music .player .next {
+  -margin-right: 10rpx;
+}
+#music .player image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+/*# sourceMappingURL=home.wxss.map */

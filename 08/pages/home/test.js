@@ -9,7 +9,7 @@ const page = new PageModule({
     }
 });
 const $app = getApp();
-const example = $app.example;// 这里使用了引用关系, 浅拷贝    所以改变就都会改变
+const example = $app.example;// 这里使用了引用关系, 浅拷贝    所以这里改变就都会改变
 example.data({a: 1});
 console.log(page);
 page.onceEvent('onLoad', function() {
