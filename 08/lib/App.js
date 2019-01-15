@@ -1,5 +1,5 @@
 import Event from './Event.js';
-
+let app;
 export default class AppModule extends  Event{
     constructor() {
         super();
@@ -26,10 +26,25 @@ export default class AppModule extends  Event{
             this.globalData[argument[0]] = argument[1];
         }
     };
+    // assign('a', 666);
+    // assign({a: 666});
+    // //给当前页面设置数据的, 不用在实际显示的页面设置数据, 通过assign代理直接给当前页设置
+    assign(key, val){
+        let page = app.page.page;
+        if (/string/i.test(typeof key) && val !== undefined) {
+            page.setData({
+                [key]: val
+            })
+        } else if (/object/i.test(typeof key)) {
+            page.setData(key);
+        }
+    };
+
     start() {
         const appExample = this;
         this.onceEvent('onLaunch', function() {
            Reflect.set(this, 'example', appExample);
+            app = this;
         });
         App(this);
     }
