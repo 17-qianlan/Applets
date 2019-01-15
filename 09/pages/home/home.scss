@@ -1,4 +1,5 @@
 /* pages/home/home.wxss */
+@charset "UTF-8";
 @function rpx($val) {
     @return $val * 1rpx;
 }
@@ -12,6 +13,7 @@
     position: relative;
     width: rpx(750);
     height: auto;
+    // 头部
     .header-nav {
         width: 100%;
         height: rpx(260);
@@ -32,6 +34,7 @@
             }
         }
     }
+    // 轮播图
     .banner {
         width: 100%;
         height: rpx(500);
@@ -54,6 +57,7 @@
             }
         }
     }
+    // 分类
     .assort{
         display: flex;
         flex-wrap: nowrap;
@@ -75,6 +79,7 @@
             }
         }
     }
+    // 推荐
     .song {
         padding: 0 rpx(20);
         .song-title {
@@ -119,6 +124,7 @@
             }
         }
     }
+    // 播放
     .player {
         position: fixed;
         left: 0;
@@ -131,10 +137,15 @@
         z-index: 1000;
         text{
             display: block;
+            width: rpx(400);
+            margin-left: rpx(10);
             line-height: rpx(100);
         }
         .next {
-            -margin-right: rpx(10);
+            margin-right: rpx(20);
+        }
+        .play{
+            margin-right: rpx(20);
         }
         image {
             width: rpx(100);
