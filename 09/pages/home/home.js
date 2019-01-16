@@ -14,13 +14,13 @@ let $page = new PageModule({
       });
     })
     this.setData({assort: region});
-    let arr = this.getSheet().data;
-    console.log(arr);
-    arr.forEach(item => {
+    this.getSheet().data.then(this.setSheets.bind(this));
+    // console.log(arr);
+    /*arr.forEach(item => {
       item.then(data => {
         console.log(data);
       })
-    })
+    })*/
   },
   // 获取歌单
   getSheet() {
@@ -35,13 +35,32 @@ let $page = new PageModule({
       })
       sheetPromise.push(p);
     });
+    /*const p = new Promise((resolve, reject) => {
+      wx.request({
+        url: urlType.topid + sheet[0].id,
+        success: resolve,
+        fail: reject
+      })
+    })*/
+    /*p.then(data => {
+      console.log(data);
+    })*/
     return {
       nameSpaces: $nameSpace,
       data: Promise.all(sheetPromise)
     };
   },
-  setSheets() {
-
+  setSheets(argument) {
+    const sheetData = [];
+    argument.forEach((data, index) => {
+      sheetData.push(Object.assign({
+        songs: data.data.songs
+      }, sheet[index]));
+    })
+    this.setData({
+      song: sheetData
+    })
+    // console.log(this.data.song);
   }
 });
 

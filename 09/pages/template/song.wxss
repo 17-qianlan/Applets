@@ -1,21 +1,21 @@
 .song {
-  padding: 0 20;
+  padding: 0 20rpx;
 }
 .song .song-title {
   width: 100%;
-  height: 75;
+  height: 75rpx;
 }
 .song .song-title navigator {
   display: block;
 }
 .song .song-title navigator image {
-  width: 60;
+  width: 60rpx;
   vertical-align: bottom;
 }
 .song .song-title navigator text {
   display: inline-block;
   vertical-algin: bottom;
-  font-size: 35;
+  font-size: 35rpx;
 }
 .song .song-list {
   width: 100%;
@@ -24,7 +24,7 @@
 }
 .song .song-list .song-list-item {
   width: 32%;
-  padding: 0 16 10 0;
+  padding: 0 16rpx 10rpx 0;
 }
 .song .song-list .song-list-item image {
   width: 100%;
@@ -33,7 +33,7 @@
 .song .song-list .song-list-item text {
   display: block;
   text-align: left;
-  font-size: 30;
+  font-size: 30rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
