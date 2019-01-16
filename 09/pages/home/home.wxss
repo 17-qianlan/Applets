@@ -1,4 +1,3 @@
-/* pages/home/home.wxss */
 .fr {
   float: right;
 }
@@ -33,11 +32,11 @@
 }
 #music .banner {
   width: 100%;
-  height: 500rpx;
+  height: auto;
   margin-top: -150rpx;
 }
 #music .banner .banner-list {
-  height: 100%;
+  height: 350rpx;
 }
 #music .banner .banner-list swiper {
   height: 100%;
@@ -128,11 +127,17 @@
   overflow: hidden;
   z-index: 1000;
 }
-#music .player text {
+#music .player .song-information {
   display: block;
   width: 400rpx;
   margin-left: 10rpx;
-  line-height: 100rpx;
+}
+#music .player .song-information text {
+  display: block;
+}
+#music .player .song-information text:nth-child(2) {
+  margin: 10rpx 0 0 10rpx;
+  font-size: 30rpx;
 }
 #music .player .next {
   margin-right: 20rpx;

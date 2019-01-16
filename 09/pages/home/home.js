@@ -1,66 +1,48 @@
-// pages/home/home.js
-Page({
+import {urlType, sheet, region} from '../../common/url-type';
+import PageModule from '../../lib/Page';
+import Banner from '../../model/Banner';
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+const $nameSpace = 'home/home';
 
+let $page = new PageModule({
+  onLoad(options) {
+    // 轮播图
+    let banner = new Banner(this);
+    banner.getBanner().then(data => {
+      this.setData({
+        banner: data
+      });
+    })
+    this.setData({assort: region});
+    let arr = this.getSheet().data;
+    console.log(arr);
+    arr.forEach(item => {
+      item.then(data => {
+        console.log(data);
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  // 获取歌单
+  getSheet() {
+    const sheetPromise = [];
+    sheet.forEach(item => {
+      const p = new Promise((resolve, reject) => {
+        wx.request({
+          url: urlType.topid + item.id,
+          success: resolve,
+          fail: reject
+        })
+      })
+      sheetPromise.push(p);
+    });
+    return {
+      nameSpaces: $nameSpace,
+      data: Promise.all(sheetPromise)
+    };
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  setSheets() {
 
   }
-})
+});
+
+$page.start();

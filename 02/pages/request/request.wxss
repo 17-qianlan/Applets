@@ -1,4 +1,4 @@
-/* pages/request/request.scss */
+/* pages/urlType/urlType.scss */
 view.container{
     width: 100vw;
     height: 100vh;

@@ -1,3 +1,4 @@
+<import src="../template/song.wxml" />
 <view id="music">
   <!--头部导航-->
   <view class="header-nav">
@@ -12,38 +13,28 @@
   <view class="banner">
     <view class="banner-list">
       <swiper autoplay="{{true}}" indicator-color="#fff" indicator-active-color="pink" indicator-dots="{{true}}" circular="{{true}}">
-        <swiper-item wx:for="{{['/images/banner02.jpg', '/images/banner03.jpeg', '/images/banner04.jpg']}}" wx:key="{{index}}">
-          <image src="{{item}}" mode="widthFix"></image>
+        <swiper-item wx:for="{{banner}}" wx:key="{{index}}">
+          <image src="{{item.src}}" mode="widthFix"></image>
         </swiper-item>
       </swiper>
     </view>
   </view>
-  <!--分类-->
+  <!--国家地区 分类-->
   <view class="assort">
-    <view class="assort-list" wx:for="{{[{type:'日韩',src:'/images/icon/music.png'}, {type:'欧美',src:'/images/icon/music.png'}, {type:'大陆',src:'/images/icon/music.png'}, {type:'港台',src:'/images/icon/music.png'}, {type:'电音',src:'/images/icon/music.png'}]}}" wx:key="{{index}}">
-      <image src="{{item.src}}" mode="widthFix"></image>
-      <text>{{item.type}}</text>
+    <view class="assort-list" wx:for="{{assort}}" wx:key="{{index}}">
+      <image src="/images/icon/music.png" mode="widthFix"></image>
+      <text>{{item.name}}</text>
     </view>
   </view>
-  <!--歌单-->
-  <view class="song">
-    <view class="song-title">
-      <navigator hover-class="none">
-        <image src="/images/icon/enum.png" mode="widthFix"></image>
-        <text>热门歌曲</text>
-      </navigator>
-    </view>
-    <view class="song-list">
-      <view class="song-list-item" wx:for="000000" wx:key="{{index}}">
-        <image src="/images/1.jpg" mode="widthFix"></image>
-        <text>一百万个可能</text>
-      </view>
-    </view>
-  </view>
+  <!--推荐歌单-->
+  <template is="song"></template>
   <!--底部播放条-->
   <view class="player">
     <image src="/images/1.jpg" class="avatar fl"></image>
-    <text class="fl">一百万个可能</text>
+    <view class="song-information fl">
+      <text class="name-song">一百万个可能</text>
+      <text class="singer">赵方婧</text>
+    </view>
     <image src="/images/icon/next.png" class="next fr"></image>
     <image src="/images/icon/player.png" class="play fr"></image>
   </view>

@@ -1,4 +1,4 @@
-<!--pages/request/request.wxml-->
+<!--pages/urlType/urlType.wxml-->
 <view class="box">
   <image src="/images/bg.jpg" class="bg"></image>
   <text>图片搜索</text>

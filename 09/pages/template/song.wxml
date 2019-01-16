@@ -1,0 +1,17 @@
+<template name="song">
+  <!--推荐歌单-->
+  <view class="song">
+    <view class="song-title">
+      <navigator hover-class="none">
+        <image src="/images/icon/enum.png" mode="widthFix"></image>
+        <text>热门歌曲</text>
+      </navigator>
+    </view>
+    <view class="song-list">
+      <view class="song-list-item" wx:for="000000" wx:key="{{index}}">
+        <image src="/images/1.jpg" mode="widthFix"></image>
+        <text>一百万个可能</text>
+      </view>
+    </view>
+  </view>
+</template>

@@ -13,7 +13,7 @@ let URL = 'https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj'
   istype: 2,
   tn:'baidulocal'//百度内搜索
 }*/
-// pages/request/list.js
+// pages/urlType/list.js
 Page({
 
   /**

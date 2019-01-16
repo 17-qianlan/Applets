@@ -1,4 +1,4 @@
-<!--pages/request/list.wxml-->
+<!--pages/urlType/list.wxml-->
 <import src="../template/image.wxml" />
 <view class="container">
   <scroll-view class="container-imgs" scroll-y bindscrolltolower="more" lower-threshold="{{50}}">
