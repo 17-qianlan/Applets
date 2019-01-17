@@ -1,2 +1,6 @@
-<!--pages/test/test.wxml-->
-<text>pages/test/test.wxml</text>
+<import src="../template/song.wxml" />
+
+<scroll-view scroll-y bindscrolltolower="morePage" lower-threshold="80">
+  <template is="song" data="{{songs}}"></template>
+</scroll-view>
+

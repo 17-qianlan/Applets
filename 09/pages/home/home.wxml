@@ -1,4 +1,5 @@
 <import src="../template/song.wxml" />
+<import src="../template/player.wxml" />
 <wxs src="../../common/function.wxs" module="commonUrl"></wxs>
 <view id="music">
   <!--头部导航-->
@@ -14,7 +15,7 @@
   <view class="banner">
     <view class="banner-list">
       <swiper autoplay="{{true}}" indicator-color="#fff" indicator-active-color="pink" indicator-dots="{{true}}" circular="{{true}}">
-        <swiper-item wx:for="{{banner}}" wx:key="{{index}}">
+        <swiper-item wx:for="{{banner}}" wx:key="{{index}}"  bindtap="actionsBanner" data-action="{{item}}">
           <image src="{{item.src}}" mode="widthFix"></image>
         </swiper-item>
       </swiper>
@@ -30,15 +31,16 @@
     </view>
   </view>
   <!--推荐歌单-->
-  <template is="song" wx:for="{{song}}" data="{{...item}}" wx:key="{{index}}"></template>
-  <!--底部播放条-->
-  <view class="player">
-    <image src="/images/1.jpg" class="avatar fl"></image>
-    <view class="song-information fl">
-      <text class="name-song">一百万个可能</text>
-      <text class="singer">赵方婧</text>
+  <view class="song" wx:for="{{song}}" wx:key="{{index}}">
+    <view class="song-title">
+      <navigator hover-class="none" url="{{commonUrl.sheetUrl({name: item.name,id: item.id})}}">
+        <image src="/images/icon/enum.png" mode="widthFix"></image>
+        <text>{{item.name}}</text>
+      </navigator>
     </view>
-    <image src="/images/icon/next.png" class="next fr"></image>
-    <image src="/images/icon/player.png" class="play fr"></image>
+    <template is="song" wx:for="{{song}}" data="{{...item}}" wx:key="{{index}}"></template>
   </view>
+
+  <!--底部播放条-->
+  <template is="player"></template>
 </view>

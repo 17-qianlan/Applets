@@ -14,7 +14,6 @@ export default class Event {
             let eTypeFn = Array.from(Reflect.get(that.events, eType));
             (function recur(){
                 let fn = eTypeFn.shift();
-                console.log(fn);
                 fn && data.pushNameSpace(fn.apply(page, argument));
                 eTypeFn.length && recur();
             })()

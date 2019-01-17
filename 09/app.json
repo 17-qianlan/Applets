@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/template/song",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/template/player"
   ],
   "window": {
     "navigationBarBackgroundColor": "#b3d4db"

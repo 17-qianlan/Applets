@@ -12,6 +12,7 @@
     position: relative;
     width: rpx(750);
     height: auto;
+    padding-bottom: rpx(120);
     .header-nav {
         width: 100%;
         height: rpx(260);
@@ -74,39 +75,26 @@
             }
         }
     }
-    @import "../template/song.scss";
-    .player {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: rpx(100);
-        background: #fff;
-        padding: rpx(10);
-        overflow: hidden;
-        z-index: 1000;
-        .song-information {
-            display: block;
-            width: rpx(400);
-            margin-left: rpx(10);
-            //line-height: rpx(100);
-            text {
+    .song {
+        padding: 0 rpx(20);
+        .song-title {
+            width: 100%;
+            height: rpx(75);
+            navigator {
                 display: block;
+                image{
+                    width: rpx(60);
+                    vertical-align: bottom;
+                }
+                text {
+                    display: inline-block;
+                    vertical-algin: bottom;
+                    font-size: rpx(35);
+                    //line-height: rpx(50);
+                }
             }
-            text:nth-child(2) {
-                margin: rpx(10) 0 0 rpx(10);
-                font-size: rpx(30);
-            }
         }
-        .next {
-            margin-right: rpx(20);
-        }
-        .play{
-            margin-right: rpx(20);
-        }
-        image {
-            width: rpx(100);
-            height: rpx(100);
-        }
+        @import "../template/song.scss";
     }
+    @import "../template/player.scss";
 }

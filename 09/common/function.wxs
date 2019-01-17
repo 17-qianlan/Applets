@@ -4,4 +4,4 @@ function sheetUrl(sheet) {
 }
 module.exports = {
     sheetUrl: sheetUrl
-}
+};

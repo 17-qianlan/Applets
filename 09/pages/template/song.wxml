@@ -1,20 +1,13 @@
+<!--<import src="../template/song-list.wxml" />-->
 <wxs src="../../common/function.wxs" module="commonUrl"></wxs>
 <template name="song">
   <!--推荐歌单-->
-  <view class="song">
-    <view class="song-title">
-      <navigator hover-class="none" url="{{commonUrl.sheetUrl({name,id})}}">
-        <image src="/images/icon/enum.png" mode="widthFix"></image>
-        <text>{{name}}</text>
+  <view class="song-list">
+    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i">
+      <navigator url="{{commonUrl.sheetUrl({name: itm.song_name,id: itm.song_mid})}}">
+        <image src="{{itm.album_big}}" mode="widthFix"></image>
+        <text>{{itm.song_name}}</text>
       </navigator>
-    </view>
-    <view class="song-list">
-      <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i">
-        <navigator url="{{commonUrl.sheetUrl({name: itm.song_name,id: itm.song_mid})}}">
-          <image src="{{itm.album_big}}" mode="widthFix"></image>
-          <text>{{itm.song_name}}</text>
-        </navigator>
-      </view>
     </view>
   </view>
 </template>
