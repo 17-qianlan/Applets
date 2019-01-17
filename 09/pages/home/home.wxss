@@ -75,7 +75,7 @@
   text-align: center;
 }
 #music .song {
-  padding: 0 20rpx;
+  padding: 20rpx;
 }
 #music .song .song-title {
   width: 100%;
@@ -97,10 +97,11 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 #music .song .song-list .song-list-item {
-  width: 32%;
-  padding: 0 16rpx 10rpx 0;
+  width: 31%;
+  padding-bottom: 10rpx;
 }
 #music .song .song-list .song-list-item image {
   width: 100%;
@@ -113,9 +114,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-#music .song .song-list .song-list-item:nth-child(3n) {
-  padding: 0;
 }
 #music .player {
   position: fixed;

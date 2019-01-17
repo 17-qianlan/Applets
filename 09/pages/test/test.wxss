@@ -2,10 +2,11 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .song-list .song-list-item {
-  width: 32%;
-  padding: 0 16rpx 10rpx 0;
+  width: 31%;
+  padding-bottom: 10rpx;
 }
 .song-list .song-list-item image {
   width: 100%;
@@ -19,12 +20,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.song-list .song-list-item:nth-child(3n) {
-  padding: 0;
-}
 
 scroll-view {
+  display: block;
   height: 100vh;
+}
+scroll-view .song-list {
+  padding: 20rpx;
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=test.wxss.map */

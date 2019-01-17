@@ -38,7 +38,7 @@
         <text>{{item.name}}</text>
       </navigator>
     </view>
-    <template is="song" wx:for="{{song}}" data="{{...item}}" wx:key="{{index}}"></template>
+    <template is="song" data="{{...item}}"></template>
   </view>
 
   <!--底部播放条-->
