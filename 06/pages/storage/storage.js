@@ -13,7 +13,7 @@ Page({
 	 */
 	onLoad: function (options) {
 		let db = new Storage('storage');
-		// db.add([{a: 3},{a: 111}, {a: 333},{a: 4444}, {a: 5555}, {a: 6666},{a: 7777}]).save();
+		// db.add([{a: 3},{a: 111, b: 666}, {a: 333},{a: 4444}, {a: 5555}, {a: 6666},{a: 7777}]).save();
 		// db.where('a', '<', '1');
 		// let arr = db.where('a', '>', 4444).select();
 		// let data = arr.slice(2, 4)
@@ -23,7 +23,13 @@ Page({
 		// console.log(db.where('a', '>', 3).sequence('a').limit(2, 3).select());
 
 		// 'a,<,3&a,=,333', 'a', 'like', 3
-		db.where('a,=,111&a,=,333&a,=,4444').delete().save();
+		// console.log(db.where('a', '>', 3).where('b', 666).find());
+		/*console.log(db.where({
+			a: 111,
+			b: ['>', 555]
+		}).find());*/
+		console.log(db.where().sequence('a','desc').all());
+		// db.where('a,=,111&a,=,333&a,=,4444').delete().save();
 		// console.log(db.where('a,=,111&a,=,333&a,=,4444').find());
 	},
 

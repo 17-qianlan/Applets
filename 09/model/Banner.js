@@ -6,7 +6,7 @@ export default class Banner {
         const action = event.currentTarget.dataset.action;
         if (action.atype === 0) {
             wx.navigateTo({
-                url: '/pages/test/test?id='+ action.data.id + '&name=' + action.data.name
+                url: '/pages/list/list?id='+ action.data.id + '&name=' + action.data.name
             });
         }
     };

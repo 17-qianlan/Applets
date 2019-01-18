@@ -32,7 +32,7 @@ export default class Storage{
                 add : []
             }
         });
-
+        this.index = 0;
     };
     // 静态方法  获取数据
     static getDataB(dataName) {
@@ -41,7 +41,9 @@ export default class Storage{
     // 提示在在查询前必须调用where函数
     static getWhere(actions) {
         if (this.whereFunction){
-            return this.whereFunction;
+            const whereFunction = this.whereFunction;
+            this.whereFunction = null;
+            return whereFunction;
         } else {
             throw new Error(`在使用${actions}请先调用where函数`);
         }
@@ -51,10 +53,16 @@ export default class Storage{
         let db = Storage.getDataB(this.dataName);
         // 删除
         if (this.cache.delete) {
-            db = db.filter( item => {
+            /*for (const itm of this.cache.delete) {
+                db = db.filter( item => {
+                    return !itm(item);
+                });
+
+            };*/
+            db = db.filter(item => {
                 return !this.cache.delete.where(item);
             })
-        }
+        };
         // 更新 缓存
         if (this.cache.update) {
             db.forEach(item => {
@@ -74,8 +82,15 @@ export default class Storage{
     };
     // 查询
     find(){
-        let db = Storage.getDataB(this.dataName);
-        return db.find(Storage.getWhere.call(this, 'find'));
+        let data = Storage.getDataB(this.dataName);
+        this.sortFn && data.sort(this.sortFn);
+        return data.find(Storage.getWhere.call(this, 'find'));
+    };
+    // 查询所有
+    all() {
+        const data = Storage.getDataB(this.dataName);
+        this.sortFn && data.sort(this.sortFn);
+        return data;
     };
     // 查找返回多个
     select(){
@@ -115,22 +130,72 @@ export default class Storage{
         return this;
     };
     // 查询,但不是真正的直接返回到页面的
-    where(...argument){
-        let [key, compare, value] = argument;
-        if (value === undefined) {
+    where(...data){
+        /*this.whereArr = [];
+        let strFirst = data.split('&');
+        let arr = [];
+        for (const item of strFirst) {
+            arr.push(item.split(','));
+        };
+        for (const item of arr) {
+            let [key, compare, value] = item;
+            if (value === undefined) {
+                value = compare;
+                compare = '=';
+            }
+            if (!(/NaN/.test(value*1))) {
+                value *= 1;
+            }
+            const compareFn = whereCompare[compare];
+            if (compareFn) {
+                this.whereArr.push((itm) => {
+                    return compareFn(itm[key], value);
+                })
+            } else {
+                throw new Error('当前查询字段非法');
+            }
+        };*/
+        let [key, compare, value] = data;
+        if (/object/.test(typeof key)) {
+            for (const dataKey in key) {
+                if (Array.isArray(key[dataKey])) {
+                    this.where(dataKey, ...key[dataKey]);
+                } else {
+                    this.where(dataKey, key[dataKey]);
+                }
+            }
+            return this;
+        };
+        if ( value === undefined) {
             value = compare;
             compare = '=';
         }
         const compareFn = whereCompare[compare];
-        if (compareFn) {
+        /*if (compareFn) {
             this.whereFunction = (item) => {
-                // 上面使用了forEach, 所以这里相当于开了一个循环, 每次item都在变
-                // 然后再调用最上面的方法, 接收到一个布尔值, 然后返回给上面的循环体
-                return compareFn(item[key], value);
+                return compareFn(item[key], value);// 这里的这个return是返回给fin使用的
             }
-        } else {
-            throw new Error('当前查询字段非法');
+        }*/
+        if (!this.whereFunction) {
+            const whereFunction = (item) => {
+                let compareNum = 0;
+                whereFunction.compare.forEach(compare => {
+                    // console.log(item[compare.key], compare.value);
+                    compareNum += ~~compare.compareFn(item[compare.key], compare.value);
+                })
+                return compareNum === whereFunction.compare.length;
+            }
+            // 这里为什么要这么写呢, 因为是要为whereFunction定义一个数组来存数据
+            // 但是如果在const里定义, 会每次执行时覆盖, 全部清空, 这样每次遍历就都是个空数组了
+            // 这里只是定义, 并不会立即执行, 所以并不会有什么影响
+            whereFunction.compare = [];
+            this.whereFunction = whereFunction;
+            this.index ++;
         }
+        this.whereFunction.compare.push({
+            key, value, compareFn
+        })
+        // console.log(this.index);
         return this;
     };
     // 分页返回
@@ -150,6 +215,10 @@ export default class Storage{
         this.cache.delete = {
             where: Storage.getWhere.call(this, 'delete')
         }
+        /*this.cache.delete = [];
+        for (const itm of this.whereArr) {
+            this.cache.delete.push(Storage.getWhere.call(this, 'delete', itm));
+        }*/
         return this;
     };
 }

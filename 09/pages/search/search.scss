@@ -1,0 +1,63 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+
+.container{
+    position: relative;
+    width: rpx(750);
+    height: auto;
+    .search{
+        width: 100%;
+        background: #b3d4db;
+        form{
+            display: block;
+            width: 90%;
+            padding: rpx(5) rpx(20);
+            margin: auto;
+            overflow: hidden;
+            input{
+                width: 89%;
+                height: rpx(30);
+                border-bottom: rpx(2) solid #fff;
+            }
+            button:after{
+                border: 0;
+            }
+            button{
+                width: rpx(60);
+                height: rpx(60);
+                padding: 0;
+                margin: 0 rpx(10) 0 0;
+                background: transparent;
+                image{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .history-list{
+        width: 100%;
+        .item{
+            display: flex;
+            width: 89%;
+            height: rpx(40);
+            padding: rpx(30) rpx(20);
+            navigator{
+                display: block;
+                flex: 1;
+                padding: 0 0 rpx(60) rpx(10);
+                border-bottom: rpx(1) solid #ccc;
+                line-height: rpx(40);
+            }
+            image{
+                display: block;
+                width: rpx(50);
+                height: rpx(50);
+                margin-left: rpx(10);
+            }
+        }
+    }
+    @import "../../template/player/player";
+}

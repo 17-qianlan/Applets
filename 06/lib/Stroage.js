@@ -32,16 +32,18 @@ export default class Storage{
                 add : []
             }
         });
-
+        this.index = 0;
     };
     // 静态方法  获取数据
     static getDataB(dataName) {
         return wx.getStorageSync(dataName) || [];
     };
     // 提示在在查询前必须调用where函数
-    static getWhere(actions, findFn) {
-        if (findFn){
-            return findFn;
+    static getWhere(actions) {
+        if (this.whereFunction){
+            const whereFunction = this.whereFunction;
+            this.whereFunction = null;
+            return whereFunction;
         } else {
             throw new Error(`在使用${actions}请先调用where函数`);
         }
@@ -77,12 +79,15 @@ export default class Storage{
     };
     // 查询
     find(){
-        let db = Storage.getDataB(this.dataName);
-        let returnArr = [];
-        for (const itm of this.whereArr) {
-            returnArr.push(db.find(Storage.getWhere.call(this, 'find', itm)));
-        }
-        return returnArr;
+        let data = Storage.getDataB(this.dataName);
+        this.sortFn && data.sort(this.sortFn);
+        return data.find(Storage.getWhere.call(this, 'find'));
+    };
+    // 查询所有
+    all() {
+        const data = Storage.getDataB(this.dataName);
+        this.sortFn && data.sort(this.sortFn);
+        return data;
     };
     // 查找返回多个
     select(){
@@ -122,8 +127,8 @@ export default class Storage{
         return this;
     };
     // 查询,但不是真正的直接返回到页面的
-    where(data){
-        this.whereArr = [];
+    where(...data){
+        /*this.whereArr = [];
         let strFirst = data.split('&');
         let arr = [];
         for (const item of strFirst) {
@@ -146,7 +151,48 @@ export default class Storage{
             } else {
                 throw new Error('当前查询字段非法');
             }
+        };*/
+        let [key, compare, value] = data;
+        if (/object/.test(typeof key)) {
+            for (const dataKey in key) {
+                if (Array.isArray(key[dataKey])) {
+                    this.where(dataKey, ...key[dataKey]);
+                } else {
+                    this.where(dataKey, key[dataKey]);
+                }
+            }
+            return this;
         };
+        if ( value === undefined) {
+            value = compare;
+            compare = '=';
+        }
+        const compareFn = whereCompare[compare];
+        /*if (compareFn) {
+            this.whereFunction = (item) => {
+                return compareFn(item[key], value);// 这里的这个return是返回给fin使用的
+            }
+        }*/
+        if (!this.whereFunction) {
+            const whereFunction = (item) => {
+                let compareNum = 0;
+                whereFunction.compare.forEach(compare => {
+                    // console.log(item[compare.key], compare.value);
+                    compareNum += ~~compare.compareFn(item[compare.key], compare.value);
+                })
+                return compareNum === whereFunction.compare.length;
+            }
+            // 这里为什么要这么写呢, 因为是要为whereFunction定义一个数组来存数据
+            // 但是如果在const里定义, 会每次执行时覆盖, 全部清空, 这样每次遍历就都是个空数组了
+            // 这里只是定义, 并不会立即执行, 所以并不会有什么影响
+            whereFunction.compare = [];
+            this.whereFunction = whereFunction;
+            this.index ++;
+        }
+        this.whereFunction.compare.push({
+            key, value, compareFn
+        })
+        // console.log(this.index);
         return this;
     };
     // 分页返回

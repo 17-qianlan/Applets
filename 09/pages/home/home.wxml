@@ -1,5 +1,5 @@
-<import src="../template/song.wxml" />
-<import src="../template/player.wxml" />
+<import src="../../template/song/song.wxml" />
+<import src="../../template/player/player.wxml" />
 <wxs src="../../common/function.wxs" module="commonUrl"></wxs>
 <view id="music">
   <!--头部导航-->

@@ -1,4 +1,4 @@
-@import "../template/song.scss";
+@import "../../template/song/song";
 @function rpx($val) {
     @return $val * 1rpx;
 }

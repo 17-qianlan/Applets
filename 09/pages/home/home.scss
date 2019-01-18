@@ -2,12 +2,6 @@
 @function rpx($val) {
     @return $val * 1rpx;
 }
-.fr {
-    float: right;
-}
-.fl {
-    float: left;
-}
 #music {
     position: relative;
     width: rpx(750);
@@ -94,7 +88,7 @@
                 }
             }
         }
-        @import "../template/song.scss";
+        @import "../../template/song/song";
     }
-    @import "../template/player.scss";
+    @import "../../template/player/player";
 }
