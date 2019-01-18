@@ -23,6 +23,9 @@ const $page = new PageModule({
       return false;
     };
     $storageSong.add(q);
+    wx.navigateTo({
+      url: 'list?name=' + q
+    })
     this.update();
   },
   update() {
@@ -30,6 +33,11 @@ const $page = new PageModule({
       history: $storageSong.all(),
       q: ''
     });
+  },
+  del(event){
+    const name = event.currentTarget.dataset.name;
+    $storageSong.delete(name);
+    this.update();
   }
 });
 

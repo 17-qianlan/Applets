@@ -1,26 +1,13 @@
-import {urlType, sheet, region} from '../common/url-type';
 import PageModule from '../lib/Page';
-
+import {urlType, sheet, region} from '../common/url-type';
 let $page = new PageModule({
-    onLoad(options){
-        Object.assign(this.data, {
-            url: '',
-            page: 1,
-            row: 20,
-            songs: [],
-            requestUrl: {},
-            stock: false
-        });
-        this.setData({
-            requestUrl: {
-                id: options.id,
-                name: options.name
-            }
-        });
-        this.requestData().then(this.codeData.bind(this));
-        wx.setNavigationBarTitle({
-            title: this.data.requestUrl.name
-        })
+    data: {
+        url: '',
+        page: 1,
+        row: 20,
+        songs: [],
+        requestUrl: {},
+        stock: false
     },
     requestData() {
         if (this.data.stock) {
@@ -56,8 +43,10 @@ let $page = new PageModule({
     morePage(){
         this.data.page++;
         this.requestData().then(this.codeData.bind(this));
+    },
+    more(){
+        console.log(this.data.url);
     }
 })
-
 
 export default $page;

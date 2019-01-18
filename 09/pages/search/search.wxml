@@ -1,19 +1,8 @@
 <import src="../../template/player/player.wxml" />
+<import src="../../public/h.wxml" />
+<import src="../../public/search.wxml" />
 <view class="container">
-  <view class="search">
-    <form action="" bindsubmit="submitSearch">
-      <input type="text" class="fl" name="sheet" value="{{q}}"/>
-      <button hover-class="none" form-type="submit" class="fr">
-        <image src="../../images/icon/search.png"></image>
-      </button>
-    </form>
-  </view>
-  <view class="history-list">
-    <view wx:for="{{history}}" class="item" wx:key="{{index}}">
-      <image src="../../images/icon/history.png"></image>
-      <navigator class="ellipsis">{{item.name}}</navigator>
-      <image src="../../images/icon/close.png"></image>
-    </view>
-  </view>
+  <template is="search" data="{{q}}"></template>
+  <template is="history" data="{{history}}"></template>
   <template is="player"></template>
 </view>

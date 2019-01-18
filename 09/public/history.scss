@@ -1,0 +1,26 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+
+.history-list{
+    width: 100%;
+    .item{
+        display: flex;
+        width: 89%;
+        height: rpx(40);
+        padding: rpx(30) rpx(20);
+        navigator{
+            display: block;
+            flex: 1;
+            padding: 0 0 rpx(60) rpx(10);
+            border-bottom: rpx(1) solid #ccc;
+            line-height: rpx(40);
+        }
+        image{
+            display: block;
+            width: rpx(50);
+            height: rpx(50);
+            margin-left: rpx(10);
+        }
+    }
+}
