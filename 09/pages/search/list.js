@@ -53,7 +53,6 @@ $page.start({
 	onLoad(options){
 		this.setData({
 			requestUrl: {
-				id: options.id,
 				name: options.name
 			}
 		});

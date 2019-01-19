@@ -5,7 +5,7 @@
 <view class="container">
   <template is="search" data="{{q}}"></template>
   <scroll-view scroll-y  bindscrolltolower="morePage" lower-threshold="80">
-    <template is="song" data="{{song}}"></template>
+    <template is="song" data="{{songs}}"></template>
   </scroll-view>
   <template is="player"></template>
 </view>

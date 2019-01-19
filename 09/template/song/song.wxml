@@ -3,11 +3,9 @@
 <template name="song">
   <!--推荐歌单-->
   <view class="song-list">
-    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i">
-      <navigator url="{{commonUrl.sheetUrl({name: itm.song_name,id: itm.song_mid})}}">
-        <image src="{{itm.album_big}}" mode="widthFix"></image>
-        <text>{{itm.song_name}}</text>
-      </navigator>
+    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i" bindtap="palerSong">
+      <image src="{{itm.album_big}}" mode="widthFix"></image>
+      <text>{{itm.song_name}}</text>
     </view>
   </view>
 </template>

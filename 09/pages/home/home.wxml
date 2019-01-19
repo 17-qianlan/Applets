@@ -32,6 +32,7 @@
     </view>
   </view>
   <!--推荐歌单-->
+  <!-- 头部 -->
   <view class="song" wx:for="{{song}}" wx:key="{{index}}">
     <view class="song-title">
       <navigator hover-class="none" url="{{commonUrl.sheetUrl({name: item.name,id: item.id})}}">

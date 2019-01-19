@@ -16,13 +16,21 @@ let $page = new PageModule({
                 title: '没有更多了'
             })
         };
+        let url = '';
+        if (/^\d{3,}/.test(this.data.requestUrl.id) || !this.data.requestUrl.id) {
+            url = urlType.query + 'p/'+ this.data.requestUrl.name;
+        } else {
+            url = urlType.topid + this.data.requestUrl.id + '/p/' + this.data.page + '/r/' + this.data.row;
+        }
+        this.setData({
+            url
+        });
         wx.showLoading({
             title: 'loading'
         })
-        const url = urlType.topid + this.data.requestUrl.id + '/p/' + this.data.page + '/r/' + this.data.row;
         return new Promise((resolve, reject) => {
             wx.request({
-                url,
+                url: this.data.url,
                 success: resolve,
                 fail: reject
             })
