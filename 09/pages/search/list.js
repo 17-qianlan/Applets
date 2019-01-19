@@ -62,5 +62,9 @@ $page.start({
 		wx.setNavigationBarTitle({
 			title: this.data.requestUrl.name
 		})
+	},
+	palerSong(event){
+		const dataset = event.currentTarget.dataset;
+		console.log(dataset);
 	}
 });

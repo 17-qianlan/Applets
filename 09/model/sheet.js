@@ -18,7 +18,7 @@ let $page = new PageModule({
         };
         let url = '';
         if (/^\d{3,}/.test(this.data.requestUrl.id) || !this.data.requestUrl.id) {
-            url = urlType.query + 'p/'+ this.data.requestUrl.name;
+            url = urlType.query + this.data.requestUrl.name;
         } else {
             url = urlType.topid + this.data.requestUrl.id + '/p/' + this.data.page + '/r/' + this.data.row;
         }
@@ -42,6 +42,7 @@ let $page = new PageModule({
                 stock: true
             })
         };
+        console.log(data);
         this.data.songs.push(...data.songs);
         this.setData({
             songs: this.data.songs
