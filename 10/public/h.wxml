@@ -1,0 +1,9 @@
+<template name="history">
+  <view class="history-list">
+    <view wx:for="{{history}}" class="item" wx:key="{{index}}">
+      <image src="../../images/icon/history.png"></image>
+      <navigator class="ellipsis" url="/pages/search/list?name={{item.name}}">{{item.name}}</navigator>
+      <image src="../../images/icon/close.png" bindtap="del" data-name="{{item.name}}"></image>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,37 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+.player {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: rpx(100);
+    background: #fff;
+    padding: rpx(10);
+    overflow: hidden;
+    z-index: 1000;
+    .song-information {
+        display: block;
+        width: rpx(400);
+        margin-left: rpx(10);
+        //line-height: rpx(100);
+        text {
+            display: block;
+        }
+        text:nth-child(2) {
+            margin: rpx(10) 0 0 rpx(10);
+            font-size: rpx(30);
+        }
+    }
+    .next {
+        margin-right: rpx(20);
+    }
+    .play{
+        margin-right: rpx(20);
+    }
+    image {
+        width: rpx(100);
+        height: rpx(100);
+    }
+}

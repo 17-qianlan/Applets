@@ -1,0 +1,24 @@
+.song-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.song-list .song-list-item {
+  width: 31%;
+  padding-bottom: 10rpx;
+}
+.song-list .song-list-item image {
+  width: 100%;
+  height: 100%;
+}
+.song-list .song-list-item text {
+  display: block;
+  text-align: left;
+  font-size: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=song.wxss.map */

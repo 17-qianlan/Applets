@@ -1,0 +1,11 @@
+.fr {
+    float: right;
+}
+.fl {
+    float: left;
+}
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,0 +1,8 @@
+// 不可以写es6的语法, 必须es5
+function sheetUrl(sheet) {
+    // return "1111"
+    return "/pages/list/list?id=" + sheet.id + "&name=" + sheet.name;
+}
+module.exports = {
+    sheetUrl: sheetUrl
+};

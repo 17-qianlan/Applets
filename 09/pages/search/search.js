@@ -25,7 +25,7 @@ const $page = new PageModule({
     $storageSong.add(q);
     wx.navigateTo({
       url: '/pages/search/list?name=' + q
-    })
+    });
     this.update();
   },
   update() {

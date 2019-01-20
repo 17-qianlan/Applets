@@ -12,7 +12,7 @@ let $page = new PageModule({
       this.setData({
         banner: data
       });
-    })
+    });
     this.setData({assort: region});
     this.getSheet().data.then(this.setSheets.bind(this));
     // console.log(arr);
@@ -32,7 +32,7 @@ let $page = new PageModule({
           success: resolve,
           fail: reject
         })
-      })
+      });
       sheetPromise.push(p);
     });
     /*const p = new Promise((resolve, reject) => {

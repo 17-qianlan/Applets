@@ -1,0 +1,12 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+
+.container{
+    position: relative;
+    width: rpx(750);
+    height: auto;
+    @import "../../public/search.scss";
+    @import "../../public/history";
+    @import "../../template/player/player.scss";
+}
