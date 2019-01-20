@@ -1,6 +1,6 @@
 import Event from './Event.js';
 let app = getApp();
-export default class PageModule extends Event {
+export default class PageModule extends Event{
     constructor(data) {
         super();
         let that = this;
@@ -8,6 +8,7 @@ export default class PageModule extends Event {
         // 因为有个先执行, 后执行的过程(在APP内)
         // 还有可以携带参数到需要的页面, 比如router, 现在是在app里执行, 是可以在哪儿拿到route的(app.page.page)
         this.onceEvent('onLoad', function() {
+            console.log('page的once事件内, 如果这里被执行, 说明page被挂载到app上');
             Reflect.set(app, 'page', {
                 example: that,
                 page: this,

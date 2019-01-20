@@ -42,7 +42,6 @@ let $page = new PageModule({
                 stock: true
             })
         };
-        console.log(data);
         this.data.songs.push(...data.songs);
         this.setData({
             songs: this.data.songs

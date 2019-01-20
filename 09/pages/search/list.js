@@ -1,8 +1,8 @@
 import {sheet, urlType, region} from '../../common/url-type.js';
 import PageModule from '../../lib/Page.js';
 import StorageSong from '../../model/StorageSong.js';
-import  $pageList from '../../model/sheet.js';
-
+import $pageList from '../../model/sheet.js';
+import Audio from '../../lib/Audio.js';
 
 /*const $page = new PageModule({
 	data: {
@@ -46,9 +46,11 @@ import  $pageList from '../../model/sheet.js';
 });*/
 const $page = new PageModule($pageList);
 const $storageSong = new StorageSong('songs');
+const audio = new Audio();
 $page.addEvent('onLoad', function(options){
 	console.log('我还是没触发');
-})
+});
+
 $page.start({
 	onLoad(options){
 		this.setData({
@@ -63,8 +65,8 @@ $page.start({
 			title: this.data.requestUrl.name
 		})
 	},
-	palerSong(event){
+	playerSong(event){
 		const dataset = event.currentTarget.dataset;
-		console.log(dataset);
+		Audio.setSong(dataset.msg);
 	}
 });

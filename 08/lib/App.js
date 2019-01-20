@@ -30,6 +30,9 @@ export default class AppModule extends  Event{
     // assign({a: 666});
     // //给当前页面设置数据的, 不用在实际显示的页面设置数据, 通过assign代理直接给当前页设置
     assign(key, val){
+        // if (!app || !app.page) {
+        //     return setTimeout(AppModule.assign.bind(null, key, val));
+        // }
         let page = app.page.page;
         if (/string/i.test(typeof key) && val !== undefined) {
             page.setData({

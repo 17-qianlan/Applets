@@ -8,19 +8,18 @@ export default class Event {
     };
     // 函数在这里执行 触发器
     static createEventHandle(eType, that){
+        console.log('触发器外');
         Reflect.set(that, eType, function(...argument){
+            console.log('触发器内');
             let page = this;
             let data = [];
             let eTypeFn = Array.from(Reflect.get(that.events, eType));
             (function recur(){
                 let fn = eTypeFn.shift();
+                console.log('递归内');
                 fn && data.pushNameSpace(fn.apply(page, argument));
                 eTypeFn.length && recur();
             })()
-            // console.log(data);
-            /*eTypeFn.forEach( item => {
-                item.apply(page, argument);
-            })*/
             return data;
         });
     };
@@ -29,7 +28,8 @@ export default class Event {
         let eTypeFn = Reflect.get(this.events, eType);
         if (!Array.isArray(eTypeFn)) {// 为空时不是数组, 所以得让他变成数组
             eTypeFn = [];
-            Reflect.set(this.events,eType, eTypeFn);
+            Reflect.set(this.events, eType, eTypeFn);
+            console.log('getEvent事件,,,是最先执行的', eType);
             Event.createEventHandle(eType, this);
         }
         return eTypeFn;
@@ -37,6 +37,7 @@ export default class Event {
     // 添加
     addEvent(eType, callback) {
         const eTypeFn = this.getEvent(eType);
+        console.log('add事件');
         eTypeFn.push(callback);
     };
     // 移除
@@ -58,6 +59,7 @@ export default class Event {
             callback.apply(this, argument);
             that.removeEvent(eType, handle);
         };
+        console.log('once事件', eType);
         this.addEvent(eType, handle);
     };
 }
