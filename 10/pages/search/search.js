@@ -17,7 +17,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '搜索'
     });
-    console.log($storageSong);
     this.update();
   },
   submitSearch(event) {
