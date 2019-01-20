@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        
+        <script>
+            let obj = {};
+            Reflect.set(obj, 'b', function(){
+                return 1;
+            });
+            console.log(typeof obj.b());
+        </script>
+    </body>
+</html>
