@@ -22,15 +22,32 @@ export default class Audio{
             title: song.song_name,
             epName: song.album_name,// 专辑
             singer: song.song_orig, // 歌手
-            coverImgUrl: song.album_min // 封面
+            coverImgUrl: song.album_min, // 封面
+            song_mid: song['song_mid'], // mid值, 可以靠这个播放音乐
+            album_big: song['album_big']// 大图
         }
         // 设置了audio.src会自动播放   合并到audio里, 因为audio也是个对象
         Object.assign(audio, AudioAttr);
         Audio.saveSong(AudioAttr, songs);
-    }
+    };
     // 保存歌曲信息(缓存)
     static saveSong(song, songs) {
-        console.log('我是Audio');
-        App.assign("song", song);
-    }
+        // App.assign("song", song);
+        if (audioStorage.where('type', 'data').find()) {
+            audioStorage.where('type', 'data').update({
+                data: song,
+                time: new Date().getTime()
+            }).save();
+        } else {
+            audioStorage.add({
+                type: 'data',
+                data: song,
+                time: new Date().getTime()
+            }).save();
+        }
+    };
+    static getSong(){
+       let data =  audioStorage.where('type', 'data').data;
+        console.log(data);
+    };
 };

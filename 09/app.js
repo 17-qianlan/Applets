@@ -2,7 +2,7 @@ import AppModule from './lib/App.js';
 
 const $app = new AppModule();
 $app.addEvent('onLaunch', function(){
-    AppModule.assign('aaa', 2222);
+    // AppModule.assign('aaa', 2222);
 })
 
 $app.start();

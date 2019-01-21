@@ -45,11 +45,11 @@ export default class AppModule extends Event{
     };
 
     start() {
-        /*const appExample = this;
+        const appExample = this;
         this.onceEvent('onLaunch', function() {
            Reflect.set(this, 'example', appExample);
             app = this;
-        });*/
+        });
         App(this);
     }
 }
