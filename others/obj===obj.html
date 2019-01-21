@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浅蓝</title>
+    </head>
+    <body>
+        <script>
+           let a = {
+               'bb': 1,
+               'cc': 2,
+               'dd': 3,
+               'ff': 4
+           };
+           let d = {
+               ee: 5
+           };
+           let c = {};
+           // Object.assign(d, a);
+           // Object.assign(c, a);
+           // d = JSON.stringify(d);
+           // c = JSON.stringify(c);
+           console.log(Object.assign({}, d, a));
+           console.log(d);
+           console.log(d === c);
+        </script>
+    </body>
+</html>

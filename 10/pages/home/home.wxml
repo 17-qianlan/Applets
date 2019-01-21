@@ -9,7 +9,7 @@
       <!--<navigator hover-class="on" class="on" wx:for="{{['推荐', '歌单', '搜索']}}" wx:key="{{index}}">{{item}}</navigator>-->
       <navigator hover-class="on">推荐</navigator>
       <navigator hover-class="on">歌单</navigator>
-      <navigator hover-class="on">搜索</navigator>
+      <navigator hover-class="on" url="/pages/search/search">搜索</navigator>
     </view>
   </view>
   <!--轮播图-->
@@ -44,5 +44,5 @@
   </view>
 
   <!--底部播放条-->
-  <template is="player"></template>
+  <template is="player" data="{{songsList}}"></template>
 </view>

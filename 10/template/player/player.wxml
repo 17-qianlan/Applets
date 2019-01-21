@@ -6,6 +6,6 @@
       <text class="singer">{{songsList.singer}}</text>
     </view>
     <image src="/images/icon/next.png" class="next fr"></image>
-    <image src="/images/icon/player.png" class="play fr"></image>
+    <image src="/images/icon/player.png" class="play fr" bindtap="playerSong" data-id="{{songsList}}"></image>
   </view>
 </template>

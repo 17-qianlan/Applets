@@ -1,6 +1,5 @@
 // import App from './App.js';
-import Storage from '../model/StorageSong.js';
-
+import Storage from './Stroage.js';
 const audioStorage = new Storage('audio_storage');// 存到数据库的库名
 const audio = wx.getBackgroundAudioManager();
 let app = getApp();
@@ -19,10 +18,12 @@ export default class Audio{
         const AudioAttr = {
             // src: urlType.music,
             src: " https://api.bzqll.com/music/tencent/url?key=579621905&id="+song['song_mid'],
-            title: song.song_name,
-            epName: song.album_name,// 专辑
-            singer: song.song_orig, // 歌手
-            coverImgUrl: song.album_min // 封面
+            title: song.song_name || song.title,
+            epName: song.album_name || song.epName,// 专辑
+            singer: song.song_orig || song.singer, // 歌手
+            coverImgUrl: song.album_min || song.coverImgUrl, // 封面
+            song_mid: song['song_mid'],
+            song_big: song['album_big'] // 大图
         }
         // 设置了audio.src会自动播放   合并到audio里, 因为audio也是个对象
         Object.assign(audio, AudioAttr);
@@ -31,6 +32,18 @@ export default class Audio{
     // 保存歌曲信息(缓存)
     static saveSong(song, songs) {
         app.globalData.songsList = song;
-        audioStorage.add(song);
+        if (audioStorage.where('type', 'song').find()) {
+            audioStorage.where('type', 'song').update({
+                type: 'song',
+                data: song,
+                time: new Date().getTime()
+            }).save();
+        } else {
+            audioStorage.add({
+                type: "song",
+                data: song,
+                time: new Date().getTime()
+            }).save();
+        }
     }
 };

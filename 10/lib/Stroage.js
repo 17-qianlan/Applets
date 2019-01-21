@@ -171,16 +171,12 @@ export default class Storage{
             compare = '=';
         }
         const compareFn = whereCompare[compare];
-        /*if (compareFn) {
-            this.whereFunction = (item) => {
-                return compareFn(item[key], value);// 这里的这个return是返回给fin使用的
-            }
-        }*/
         if (!this.whereFunction) {
             const whereFunction = (item) => {
                 let compareNum = 0;
                 whereFunction.compare.forEach(compare => {
                     // console.log(item[compare.key], compare.value);
+                    // console.log(~~compare.compareFn(JSON.stringify(item[compare.key]), JSON.stringify(compare.value)));
                     compareNum += ~~compare.compareFn(item[compare.key], compare.value);
                 })
                 return compareNum === whereFunction.compare.length;

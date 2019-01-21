@@ -3,7 +3,7 @@
 <template name="song">
   <!--推荐歌单-->
   <view class="song-list">
-    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i" bindtap="playerSong" data-msg="{{itm}}">
+    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i" bindtap="playerSong" data-id="{{itm}}">
       <image src="{{itm.album_big}}" mode="widthFix"></image>
       <text>{{itm.song_name}}</text>
     </view>
