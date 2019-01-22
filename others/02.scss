@@ -1,0 +1,10 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+body{
+    width: 100px;
+    height: 200px;
+    view{
+        width: rpx(100);
+    }
+}

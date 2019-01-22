@@ -32,7 +32,8 @@ export default class Audio{
     };
     // 保存歌曲信息(缓存)
     static saveSong(song, songs) {
-        // App.assign("song", song);
+        // 保存到类, 可以让用户第一次进来获取到相关的数据 Audio['soon']
+        App.assign("song", song);
         if (audioStorage.where('type', 'data').find()) {
             audioStorage.where('type', 'data').update({
                 data: song,
@@ -48,6 +49,9 @@ export default class Audio{
     };
     static getSong(){
        let data =  audioStorage.where('type', 'data').data;
-        console.log(data);
+       if (!data) {
+            data = Audio['song'];
+       }
+       return data;
     };
 };

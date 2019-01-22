@@ -3,6 +3,7 @@ import PageModule from '../../lib/Page.js';
 import StorageSong from '../../model/StorageSong.js';
 import $pageList from '../../model/sheet.js';
 import Audio from '../../lib/Audio.js';
+import $pageMusic from '../../model/PageMusic.js';
 
 /*const $page = new PageModule({
 	data: {
@@ -47,10 +48,8 @@ import Audio from '../../lib/Audio.js';
 const $page = new PageModule($pageList);
 const $storageSong = new StorageSong('songs');
 const audio = new Audio();
-$page.addEvent('onLoad', function(options){
-	console.log('我还是没触发');
-});
 
+$page.extends($pageMusic);
 $page.start({
 	onLoad(options){
 		this.setData({
@@ -63,10 +62,25 @@ $page.start({
 		});
 		wx.setNavigationBarTitle({
 			title: this.data.requestUrl.name
-		})
-	},
+		});
+    },
 	playerSong(event){
 		const dataset = event.currentTarget.dataset;
 		Audio.setSong(dataset.msg);
-	}
+		this.onPlayer();
+	},
+    submitSearch(event) {
+        let q = event.detail.value.sheet;
+        if (/^\s*$/.test(q)) {
+            wx.showToast({
+                icon: 'none',
+                title: '搜索不可以为空'
+            })
+            return false;
+        };
+        $storageSong.add(q);
+        wx.navigateTo({
+            url: '/pages/search/list?name=' + q
+        });
+    },
 });
