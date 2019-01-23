@@ -2,7 +2,6 @@ import {sheet, urlType, region} from '../../common/url-type.js';
 import PageModule from '../../lib/Page.js';
 import StorageSong from '../../model/StorageSong.js';
 import $pageList from '../../model/sheet.js';
-import Audio from '../../lib/Audio.js';
 import $pageMusic from '../../model/PageMusic.js';
 
 /*const $page = new PageModule({
@@ -47,29 +46,41 @@ import $pageMusic from '../../model/PageMusic.js';
 });*/
 const $page = new PageModule($pageList);
 const $storageSong = new StorageSong('songs');
-const audio = new Audio();
+$page.addEvent('onLoad', function(sheet){
+    this.setData({
+        url: urlType.query + sheet.name
+    })
+    this.requestData().then(this.codeData.bind(this)).catch(err => {
+        console.log(err);
+    });
+    wx.setNavigationBarTitle({
+        title: sheet.name
+    });
+});
 
 $page.extends($pageMusic);
 $page.start({
-	onLoad(options){
-		this.setData({
-			requestUrl: {
-				name: options.name
-			}
-		});
-		this.requestData().then(this.codeData.bind(this)).catch(err => {
-			console.log(err);
-		});
-		wx.setNavigationBarTitle({
-			title: this.data.requestUrl.name
-		});
-    },
-	playerSong(event){
-		const dataset = event.currentTarget.dataset;
-		Audio.setSong(dataset.msg);
-		this.onPlayer();
-	},
-    submitSearch(event) {
+   /* onLoad(options){
+        this.setData({
+            requestUrl: {
+                name: options.name
+            }
+        });
+        console.log(this.data);
+        this.requestData().then(this.codeData.bind(this)).catch(err => {
+            console.log(err);
+        });
+        wx.setNavigationBarTitle({
+            title: this.data.requestUrl.name
+        });
+        // console.log(this.data.song);
+    },*/
+    /*playerSong(event){
+        const dataset = event.currentTarget.dataset;
+        Audio.setSong(dataset.msg);
+        this.onPlayer();
+    },*/
+    /*submitSearch(event) {
         let q = event.detail.value.sheet;
         if (/^\s*$/.test(q)) {
             wx.showToast({
@@ -82,5 +93,5 @@ $page.start({
         wx.navigateTo({
             url: '/pages/search/list?name=' + q
         });
-    },
+    },*/
 });

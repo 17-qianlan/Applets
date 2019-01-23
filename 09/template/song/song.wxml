@@ -1,9 +1,9 @@
 <!--<import src="../template/song-list.wxml" />-->
 <wxs src="../../common/function.wxs" module="commonUrl"></wxs>
-<template name="song">
+<template name="songs">
   <!--推荐歌单-->
   <view class="song-list">
-    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i" bindtap="playerSong" data-msg="{{itm}}">
+    <view class="song-list-item"  wx:for="{{songs}}" wx:key="{{i}}" wx:for-item="itm" wx:for-index="i" bindtap="onPlayer" data-msg="{{itm}}">
       <image src="{{itm.album_big}}" mode="widthFix"></image>
       <text>{{itm.song_name}}</text>
     </view>

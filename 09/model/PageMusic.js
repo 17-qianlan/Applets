@@ -4,20 +4,21 @@ import PageModule from '../lib/Page';
 const $pageMusic = new PageModule({
     // 播放歌曲
     onPlayer(event){
-        const song = event;
-        console.log(song);
-        /*if (song) {
-            Audio.setSong(song);
+        const msg = event.currentTarget.dataset.msg;
+        if (msg) {
+            Audio.setSong(msg);
             this.setData({
-                songsList: song
+                songs_list: msg
             });
-        }*/
+        }
     },
     onShow(){
         // 获取歌曲信息, 使用onShow, 切换页面时可以很好的获取到当前的数据, (每一个页面都可以, 只要把这个类挂载到页面上)
-        const songData = Audio.getSong();
-        console.log(songData);
-        this.setData(songData);
+        let songData = Audio.getSong();
+        if (!songData) return false;
+        this.setData({
+            songs_list: songData
+        });
     }
 });
 

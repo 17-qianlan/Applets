@@ -1,6 +1,8 @@
 import {urlType, sheet, region} from '../../common/url-type';
 import PageModule from '../../lib/Page';
 import Banner from '../../model/Banner';
+import $pageMusic from '../../model/PageMusic.js';
+import Audio from "../../lib/Audio";
 
 const $nameSpace = 'home/home';
 
@@ -14,8 +16,8 @@ let $page = new PageModule({
       });
     });
     this.setData({assort: region});
-    this.getSheet().data.then(this.setSheets.bind(this));
-    // console.log(arr);
+    let newPromise = this.getSheet().data;
+    newPromise.then(this.setSheets.bind(this));
     /*arr.forEach(item => {
       item.then(data => {
         console.log(data);
@@ -41,8 +43,8 @@ let $page = new PageModule({
         success: resolve,
         fail: reject
       })
-    })*/
-    /*p.then(data => {
+    })
+    p.then(data => {
       console.log(data);
     })*/
     return {
@@ -58,10 +60,9 @@ let $page = new PageModule({
       }, sheet[index]));
     })
     this.setData({
-      song: sheetData
+      songs: sheetData
     })
-    // console.log(this.data.song);
   }
 });
-
+$page.extends($pageMusic);
 $page.start();

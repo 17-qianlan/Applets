@@ -1,0 +1,8 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+
+.lyrics{
+    width: 100%;
+    height: rpx(970);
+}

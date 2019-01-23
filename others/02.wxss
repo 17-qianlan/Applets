@@ -2,7 +2,8 @@ body {
   width: 100px;
   height: 200px;
 }
-
 body view {
   width: 100rpx;
 }
+
+/*# sourceMappingURL=02.wxss.map */

@@ -1,6 +1,7 @@
 import {sheet, urlType, region} from '../../common/url-type';
 import PageModule from '../../lib/Page';
 import StorageSong from '../../model/StorageSong';
+import $pageMusic from "../../model/PageMusic";
 const $storageSong = new StorageSong('songs');
 const $page = new PageModule({
   data: {
@@ -40,5 +41,5 @@ const $page = new PageModule({
     this.update();
   }
 });
-
+$page.extends($pageMusic);
 $page.start();

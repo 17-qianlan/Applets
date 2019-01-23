@@ -1,5 +1,6 @@
 import PageModule from '../lib/Page';
-import {urlType, sheet, region} from '../common/url-type';
+import StorageSong from './StorageSong.js';
+const $storageSong = new StorageSong('songs');
 let $page = new PageModule({
     data: {
         url: '',
@@ -16,18 +17,9 @@ let $page = new PageModule({
                 title: '没有更多了'
             })
         };
-        let url = '';
-        if (/^\d{3,}/.test(this.data.requestUrl.id) || !this.data.requestUrl.id) {
-            url = urlType.query + this.data.requestUrl.name;
-        } else {
-            url = urlType.topid + this.data.requestUrl.id + '/p/' + this.data.page + '/r/' + this.data.row;
-        }
-        this.setData({
-            url
-        });
         wx.showLoading({
             title: 'loading'
-        })
+        });
         return new Promise((resolve, reject) => {
             wx.request({
                 url: this.data.url,
@@ -52,9 +44,20 @@ let $page = new PageModule({
         this.data.page++;
         this.requestData().then(this.codeData.bind(this));
     },
-    more(){
-        console.log(this.data.url);
-    }
+    submitSearch(event) {
+        let q = event.detail.value.sheet;
+        if (/^\s*$/.test(q)) {
+            wx.showToast({
+                icon: 'none',
+                title: '搜索不可以为空'
+            })
+            return false;
+        };
+        $storageSong.add(q);
+        wx.navigateTo({
+            url: '/pages/search/list?name=' + q
+        });
+    },
 })
 
 export default $page;

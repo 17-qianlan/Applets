@@ -1,10 +1,13 @@
 {
   "pages": [
+    "pages/item/song",
     "pages/home/home",
     "pages/search/search",
     "pages/search/list",
     "pages/list/list",
     "template/player/player",
-    "template/song/song"
+    "template/song/song",
+    "template/singer/singer",
+    "template/lyrics/lyrics"
   ]
 }

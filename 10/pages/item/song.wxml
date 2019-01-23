@@ -1,0 +1,20 @@
+<!--pages/item/song.wxml-->
+<import src="../../template/lyrics/lyrics.wxml" />
+<import src="../../template/singer/singer.wxml" />
+<view class="container">
+  <template is="singer"></template>
+  <view class="player-songs">
+    <view class="bar">
+      <text class="start-time time">00:00</text>
+      <text class="progress-bar"></text>
+      <text class="end-time time">00:00</text>
+    </view>
+    <view class="btn">
+      <view class="iconfont icon-xunhuan icon"></view>
+      <view class="iconfont icon-shangyiqu icon"></view>
+      <view class="iconfont icon-bofang icon"></view>
+      <view class="iconfont icon-xiayiqu icon"></view>
+      <view class="iconfont icon-menu icon"></view>
+    </view>
+  </view>
+</view>

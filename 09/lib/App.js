@@ -30,11 +30,13 @@ export default class AppModule extends Event{
     // assign({a: 666});
     // 给当前页面App设置数据的, 不用在实际显示的页面设置数据, 通过assign代理直接给当前页设置
     static assign(key, val){
+        console.log('assign');
         if (!app || !app.page) {
-            return requestAnimationFrame(AppModule.assign.bind(null, key, val));
+            return setTimeout(AppModule.assign.bind(null, key, val), 0);
         }
-        console.log(2);
+        console.log('page');
         let page = app.page.page;
+        console.log(page);
         if (/string/i.test(typeof key) && val !== undefined) {
             page.setData({
                 [key]: val

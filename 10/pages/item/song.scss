@@ -1,0 +1,62 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+.container{
+    width: rpx(750);
+    height: 100vh;
+    background: linear-gradient(rgb(99, 109, 109) 0%, rgb(0, 0, 0) 90%);
+    @import "../../template/lyrics/lyrics.scss";
+    @import "../../template/singer/singer.scss";
+    .player-songs{
+        width: 100%;
+        height: rpx(330);
+        .bar{
+            //display: flex;
+            width: 90%;
+            height: rpx(60);
+            margin: auto;
+            .time{
+                //flex: 1;
+                display: inline-block;
+                width: 9%;
+                color: red;
+                font-size: rpx(25);
+                vertical-align: middle;
+            }
+            .progress-bar::before{
+                position: absolute;
+                top: rpx(-15);
+                left: rpx(-1);
+                content: '.';
+                width: rpx(30);
+                height: rpx(30);
+                border-radius: 50%;
+                background: #fff;
+                color: red;
+                text-align: center;
+                line-height: rpx(8);
+            }
+            .progress-bar{
+                display: inline-block;
+                position: relative;
+                width: 76%;
+                border: 1px solid red;
+                margin: 0 1%;
+                vertical-align: middle;
+            }
+        }
+        .btn{
+            display: flex;
+            width: 87%;
+            height: rpx(190);
+            padding: rpx(40) 0;
+            margin: auto;
+            view{
+                flex: 1;
+                color: #ccc;
+                font-size: rpx(65);
+                text-align: center;
+            }
+        }
+    }
+}

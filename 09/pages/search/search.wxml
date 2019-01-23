@@ -2,7 +2,7 @@
 <import src="../../public/h.wxml" />
 <import src="../../public/search.wxml" />
 <view class="container">
-  <template is="search" data="{{q}}"></template>
-  <template is="history" data="{{history}}"></template>
-  <template is="player"></template>
+  <template is="search" data="{{q}}" />
+  <template is="history" data="{{history}}" />
+  <template is="player" data="{{song}}" />
 </view>

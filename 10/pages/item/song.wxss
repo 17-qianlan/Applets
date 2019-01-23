@@ -1,0 +1,102 @@
+.container {
+  width: 750rpx;
+  height: 100vh;
+  background: linear-gradient(#636d6d 0%, black 90%);
+}
+.container .lyrics {
+  width: 100%;
+  height: 970rpx;
+}
+.container .msg {
+  width: 100%;
+  height: 970rpx;
+  padding: 10rpx 0;
+}
+.container .msg .photo {
+  position: relative;
+  width: 100%;
+  height: 900rpx;
+}
+.container .msg .photo .img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 470rpx;
+  height: 470rpx;
+  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 470rpx, transparent 471rpx) no-repeat center/920rpx;
+}
+.container .msg .photo image {
+  display: block;
+  width: 450rpx;
+  height: 450rpx;
+  border-radius: 50%;
+  margin: 10rpx auto;
+}
+.container .msg .details {
+  display: flex;
+  width: 85%;
+  height: 70rpx;
+  margin: auto;
+}
+.container .msg .details view {
+  flex: 1;
+  color: #ccc;
+  font-size: 60rpx;
+  text-align: center;
+  font-weight: normal;
+}
+.container .player-songs {
+  width: 100%;
+  height: 330rpx;
+}
+.container .player-songs .bar {
+  width: 90%;
+  height: 60rpx;
+  margin: auto;
+}
+.container .player-songs .bar .time {
+  display: inline-block;
+  width: 9%;
+  color: red;
+  font-size: 25rpx;
+  vertical-align: middle;
+}
+.container .player-songs .bar .progress-bar::before {
+  position: absolute;
+  top: -15rpx;
+  left: -1rpx;
+  content: '.';
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background: #fff;
+  color: red;
+  text-align: center;
+  line-height: 8rpx;
+}
+.container .player-songs .bar .progress-bar {
+  display: inline-block;
+  position: relative;
+  width: 76%;
+  border: 1px solid red;
+  margin: 0 1%;
+  vertical-align: middle;
+}
+.container .player-songs .btn {
+  display: flex;
+  width: 87%;
+  height: 190rpx;
+  padding: 40rpx 0;
+  margin: auto;
+}
+.container .player-songs .btn view {
+  flex: 1;
+  color: #ccc;
+  font-size: 65rpx;
+  text-align: center;
+}
+
+/*# sourceMappingURL=song.wxss.map */

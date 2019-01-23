@@ -9,7 +9,7 @@
       <!--<navigator hover-class="on" class="on" wx:for="{{['推荐', '歌单', '搜索']}}" wx:key="{{index}}">{{item}}</navigator>-->
       <navigator hover-class="on">推荐</navigator>
       <navigator hover-class="on">歌单</navigator>
-      <navigator hover-class="on">搜索</navigator>
+      <navigator hover-class="on" url="/pages/search/search">搜索</navigator>
     </view>
   </view>
   <!--轮播图-->
@@ -33,16 +33,19 @@
   </view>
   <!--推荐歌单-->
   <!-- 头部 -->
-  <view class="song" wx:for="{{song}}" wx:key="{{index}}">
+  <view class="song" wx:for="{{songs}}" wx:key="{{index}}">
     <view class="song-title">
       <navigator hover-class="none" url="{{commonUrl.sheetUrl({name: item.name,id: item.id})}}">
         <image src="/images/icon/enum.png" mode="widthFix"></image>
         <text>{{item.name}}</text>
       </navigator>
     </view>
-    <template is="song" data="{{...item}}"></template>
+    <template is="songs" data="{{...item}}"></template>
   </view>
 
   <!--底部播放条-->
-  <template is="player"></template>
+  <template is="player" data="{{...songs_list}}"></template>
+  <view>
+    {{songs_list.title || sl.title}}
+  </view>
 </view>

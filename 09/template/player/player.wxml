@@ -1,9 +1,9 @@
 <template name="player">
   <view class="player">
-    <image src="/images/1.jpg" class="avatar fl"></image>
+    <image src="{{ coverImgUrl || '/images/1.jpg'}}" class="avatar fl"></image>
     <view class="song-information fl">
-      <text class="name-song">一百万个可能</text>
-      <text class="singer">赵方婧</text>
+      <text class="name-song">{{title}}</text>
+      <text class="singer">{{singer}}</text>
     </view>
     <image src="/images/icon/next.png" class="next fr"></image>
     <image src="/images/icon/player.png" class="play fr"></image>

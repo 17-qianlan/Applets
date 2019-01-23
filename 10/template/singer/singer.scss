@@ -1,0 +1,46 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+
+.msg{
+    width: 100%;
+    height: rpx(970);
+    padding: rpx(10) 0;
+    .photo{
+        position: relative;
+        width: 100%;
+        height: rpx(900);
+        .img{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: rpx(470);
+            height: rpx(470);
+            background: radial-gradient(rgba(255, 255, 255, .1), rgba(255, 255, 255, .1) rpx(470), transparent rpx(471)) no-repeat center / rpx(920);
+
+        }
+        image{
+            display: block;
+            width: rpx(450);
+            height: rpx(450);
+            border-radius: 50%;
+            margin: rpx(10) auto;
+        }
+    }
+    .details{
+        display: flex;
+        width: 85%;
+        height: rpx(70);
+        margin: auto;
+        view{
+            flex: 1;
+            color: #ccc;
+            font-size: rpx(60);
+            text-align: center;
+            font-weight: normal;
+        }
+    }
+}
