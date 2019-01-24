@@ -6,7 +6,9 @@
   <view class="player-songs">
     <view class="bar">
       <text class="start-time time">00:00</text>
-      <text class="progress-bar"></text>
+      <view class="progress-bar">
+        <slider step="5" block-size="14" activeColor="#d0b4b4"/>
+      </view>
       <text class="end-time time">00:00</text>
     </view>
     <view class="btn">
@@ -14,7 +16,30 @@
       <view class="iconfont icon-shangyiqu icon"></view>
       <view class="iconfont icon-bofang icon"></view>
       <view class="iconfont icon-xiayiqu icon"></view>
-      <view class="iconfont icon-menu icon"></view>
+      <view class="iconfont icon-menu icon" bindtap="openTab"></view>
     </view>
+  </view>
+  <view class="current-list {{closeTabBoolean? 'show': ''}} {{openTabBoolean? 'hide': ''}}">
+    <view class="title">
+      <view class="left">
+        <text class="iconfont icon-liebiaoxunhuan"></text>
+        <text class="iconfont"> 列表循环</text>
+        <text class="iconfont">( 10 )</text>
+      </view>
+      <view class="right">
+        <text class="iconfont icon-guanbi" bindtap="closeTab"></text>
+      </view>
+    </view>
+    <scroll-view scroll-y>
+      <view class="song-item">
+        <view class="item" wx:for="00000000000" wx:key="{{index}}">
+          <view class="song-msg {{index === current? 'on': ''}}">
+            <text class="song">离人殇</text> -
+            <text class="singer">赵方婧</text>
+          </view>
+          <view class="iconfont icon-guanbi2 close"></view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 </view>

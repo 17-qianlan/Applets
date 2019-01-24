@@ -5,7 +5,9 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+        current: 0,
+        closeTabBoolean: false,
+        openTabBoolean: false
 	},
 
 	/**
@@ -14,7 +16,18 @@ Page({
 	onLoad: function (options) {
 
 	},
-
+    closeTab(){
+        this.setData({
+            openTabBoolean: true,
+            closeTabBoolean: false
+        });
+    },
+    openTab(){
+	    this.setData({
+            closeTabBoolean: true,
+            openTabBoolean: false,
+        })
+    },
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */

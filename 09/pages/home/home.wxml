@@ -46,6 +46,6 @@
   <!--底部播放条-->
   <template is="player" data="{{...songs_list}}"></template>
   <view>
-    {{songs_list.title || sl.title}}
+    {{songs_list.src || sl.title}}
   </view>
 </view>

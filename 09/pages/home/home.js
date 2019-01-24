@@ -18,11 +18,6 @@ let $page = new PageModule({
     this.setData({assort: region});
     let newPromise = this.getSheet().data;
     newPromise.then(this.setSheets.bind(this));
-    /*arr.forEach(item => {
-      item.then(data => {
-        console.log(data);
-      })
-    })*/
   },
   // 获取歌单
   getSheet() {
@@ -37,16 +32,6 @@ let $page = new PageModule({
       });
       sheetPromise.push(p);
     });
-    /*const p = new Promise((resolve, reject) => {
-      wx.request({
-        url: urlType.topid + sheet[0].id,
-        success: resolve,
-        fail: reject
-      })
-    })
-    p.then(data => {
-      console.log(data);
-    })*/
     return {
       nameSpaces: $nameSpace,
       data: Promise.all(sheetPromise)
@@ -62,6 +47,12 @@ let $page = new PageModule({
     this.setData({
       songs: sheetData
     })
+  },
+  onreset(){
+      this.setData({
+          songs: this.data.songs_list
+      })
+      // console.log(this.data.songs);
   }
 });
 $page.extends($pageMusic);

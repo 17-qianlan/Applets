@@ -35,7 +35,6 @@ export default class Audio{
         // 保存到类, 可以让用户第一次进来获取到相关的数据 Audio['soon']
         // 只会在第一次执行的时候绑定一次
         App.assign({songs_list: song});// 这个数据会同步到data上面, app.assign会在任何页面上调用并设置song方法
-        console.log('app');
         if (audioStorage.where('type', 'data').find()) {
             audioStorage.where('type', 'data').update({
                 data: song,

@@ -1,7 +1,9 @@
 .container {
-  width: 750rpx;
+  position: relative;
+  width: 100vw;
   height: 100vh;
   background: linear-gradient(#636d6d 0%, black 90%);
+  overflow: hidden;
 }
 .container .lyrics {
   width: 100%;
@@ -13,27 +15,25 @@
   padding: 10rpx 0;
 }
 .container .msg .photo {
-  position: relative;
   width: 100%;
   height: 900rpx;
 }
 .container .msg .photo .img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 240rpx, transparent 241rpx) no-repeat center center/900rpx 900rpx;
+}
+.container .msg .photo image {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   margin: auto;
-  width: 470rpx;
-  height: 470rpx;
-  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 470rpx, transparent 471rpx) no-repeat center/920rpx;
-}
-.container .msg .photo image {
-  display: block;
   width: 450rpx;
   height: 450rpx;
   border-radius: 50%;
-  margin: 10rpx auto;
 }
 .container .msg .details {
   display: flex;
@@ -56,6 +56,19 @@
   width: 90%;
   height: 60rpx;
   margin: auto;
+  /*.progress-bar::before{
+      position: absolute;
+      top: rpx(-15);
+      left: rpx(-1);
+      content: '.';
+      width: rpx(30);
+      height: rpx(30);
+      border-radius: 50%;
+      background: #fff;
+      color: red;
+      text-align: center;
+      line-height: rpx(8);
+  }*/
 }
 .container .player-songs .bar .time {
   display: inline-block;
@@ -64,24 +77,10 @@
   font-size: 25rpx;
   vertical-align: middle;
 }
-.container .player-songs .bar .progress-bar::before {
-  position: absolute;
-  top: -15rpx;
-  left: -1rpx;
-  content: '.';
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-  background: #fff;
-  color: red;
-  text-align: center;
-  line-height: 8rpx;
-}
 .container .player-songs .bar .progress-bar {
   display: inline-block;
   position: relative;
   width: 76%;
-  border: 1px solid red;
   margin: 0 1%;
   vertical-align: middle;
 }
@@ -97,6 +96,86 @@
   color: #ccc;
   font-size: 65rpx;
   text-align: center;
+}
+.container .current-list {
+  position: absolute;
+  bottom: -590rpx;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  background: #fff;
+  overflow: hidden;
+  z-index: 999;
+}
+.container .current-list .title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #eee;
+}
+.container .current-list .title view {
+  font-size: 40rpx;
+}
+.container .current-list ::-webkit-scrollbar {
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #ccc;
+}
+.container .current-list scroll-view {
+  width: 100%;
+  height: 100%;
+}
+.container .current-list scroll-view .song-item {
+  width: 100%;
+  height: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+.container .current-list scroll-view .song-item .item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60rpx;
+  border-bottom: 1rpx solid #eee;
+  line-height: 60rpx;
+}
+.container .current-list scroll-view .song-item .item .song-msg .song {
+  font-size: 40rpx;
+}
+.container .current-list scroll-view .song-item .item .song-msg .singer {
+  font-size: 30rpx;
+}
+.container .show {
+  animation: show 1s 1 forwards;
+}
+.container .hide {
+  animation: hide 1s 1 forwards;
+}
+
+.on {
+  color: green;
+}
+
+@keyframes show {
+  from {
+    bottom: -590rpx;
+  }
+  to {
+    bottom: 0rpx;
+  }
+}
+@keyframes hide {
+  from {
+    bottom: 0rpx;
+  }
+  to {
+    bottom: -590rpx;
+  }
 }
 
 /*# sourceMappingURL=song.wxss.map */
