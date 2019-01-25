@@ -32,18 +32,23 @@ export default class Audio{
     // 保存歌曲信息(缓存)
     static saveSong(song, songs) {
         app.globalData.songsList = song;
-        if (audioStorage.where('type', 'song').find()) {
-            audioStorage.where('type', 'song').update({
-                type: 'song',
-                data: song,
-                time: new Date().getTime()
-            }).save();
-        } else {
-            audioStorage.add({
-                type: "song",
-                data: song,
-                time: new Date().getTime()
-            }).save();
-        }
+        app.globalData.songs = songs;
+        const type = {song, songs};
+        const trigger = item => {
+            if (audioStorage.where('type', item).find()) {
+                audioStorage.where('type', item).update({
+                    type: item,
+                    data: type[item],
+                    time: new Date().getTime()
+                }).save();
+            } else {
+                audioStorage.add({
+                    type: item,
+                    data: type[item],
+                    time: new Date().getTime()
+                }).save();
+            }
+        };
+        Object.keys(type).forEach(trigger);
     }
 };

@@ -2,7 +2,7 @@ import {urlType, sheet, region} from '../../common/url-type';
 import AudioStorage from "../../model/StorageSong";
 import Audio from '../../lib/Audio.js';
 let app = getApp();
-const audioStorage = new AudioStorage('audio_storage');
+const audioStorageSong = new AudioStorage('audio_storage_song');
 Page({
 
     /**
@@ -30,16 +30,16 @@ Page({
         });
         this.setData({assort: region});
         this.getSheet().then(this.setSheets.bind(this));
-        let all = audioStorage.all();
+        let all = audioStorageSong.all();
         if (all.length) {
             this.setData({
                 songsList: all[all.length-1].data
             });
-        }
+        };
     },
     playerSong(event) {
         const dataset = event.currentTarget.dataset;
-        Audio.setSong(dataset.id);
+        Audio.setSong(dataset.song, dataset.songs);
         this.setData({
             songsList: app.globalData.songsList
         });

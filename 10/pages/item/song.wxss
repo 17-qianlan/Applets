@@ -99,7 +99,7 @@
 }
 .container .current-list {
   position: absolute;
-  bottom: -590rpx;
+  bottom: -610rpx;
   left: 0;
   width: 100%;
   height: 50%;
@@ -163,7 +163,7 @@
 
 @keyframes show {
   from {
-    bottom: -590rpx;
+    bottom: -610rpx;
   }
   to {
     bottom: 0rpx;
@@ -174,7 +174,7 @@
     bottom: 0rpx;
   }
   to {
-    bottom: -590rpx;
+    bottom: -610rpx;
   }
 }
 

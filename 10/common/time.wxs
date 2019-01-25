@@ -1,0 +1,13 @@
+function toGetTime(n) {
+    if (n) {
+        return ~~(n/60) + ':' + (function(n){
+            n = Math.ceil(n);
+            return n > 9? n : '0' + n;
+        })(n%60);
+    } else {
+       return '00:00'
+    }
+}
+module.exports = {
+    toGetTime: toGetTime
+}

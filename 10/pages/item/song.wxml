@@ -1,20 +1,23 @@
-<!--pages/item/song.wxml-->
+<wxs src="../../common/time.wxs"  module="time"/>
 <import src="../../template/lyrics/lyrics.wxml" />
 <import src="../../template/singer/singer.wxml" />
+
+
+
 <view class="container">
   <template is="singer"></template>
   <view class="player-songs">
     <view class="bar">
-      <text class="start-time time">00:00</text>
+      <text class="start-time time">{{time.toGetTime(songs_msg.currentTime)}}</text>
       <view class="progress-bar">
-        <slider step="5" block-size="14" activeColor="#d0b4b4"/>
+        <slider step="5" block-size="14" activeColor="#d0b4b4" step="1" value="{{songs_msg.currentTime || 0}}" max="{{songs_msg.duration || 0}}"/>
       </view>
-      <text class="end-time time">00:00</text>
+      <text class="end-time time">{{time.toGetTime(songs_msg.duration)}}</text>
     </view>
     <view class="btn">
       <view class="iconfont icon-xunhuan icon"></view>
       <view class="iconfont icon-shangyiqu icon"></view>
-      <view class="iconfont icon-bofang icon"></view>
+      <view class="iconfont {{playType}} icon" bindtap="onPlay"></view>
       <view class="iconfont icon-xiayiqu icon"></view>
       <view class="iconfont icon-menu icon" bindtap="openTab"></view>
     </view>

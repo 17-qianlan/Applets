@@ -62,7 +62,7 @@
     }
     .current-list{
         position: absolute;
-        bottom: rpx(-590);
+        bottom: rpx(-610);
         left: 0;
         width: 100%;
         height: 50%;
@@ -127,7 +127,7 @@
 }
 @keyframes show {
     from{
-        bottom: rpx(-590);
+        bottom: rpx(-610);
     }
     to{
         bottom: rpx(0);
@@ -138,7 +138,7 @@
         bottom: rpx(0);
     }
     to{
-        bottom: rpx(-590);
+        bottom: rpx(-610);
     }
 }
 

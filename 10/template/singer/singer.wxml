@@ -22,7 +22,7 @@
       <view class="iconfont icon-xiazai icon"></view>
       <view class="iconfont icon-xiazai icon"></view>
       <view class="iconfont icon-xinxi icon"></view>
-      <view class="iconfont icon-weibiaoti- icon"></view>
+      <view class="iconfont icon-weibiaoti- icon"  bindtap="openTab"></view>
     </view>
   </view>
 </template>
