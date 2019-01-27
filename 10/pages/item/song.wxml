@@ -5,7 +5,9 @@
 
 
 <view class="container">
-  <template is="lyrics" data="{{...songs_list}}" data="{{lyrics}}"></template>
+  <view class="lyrics_singer"  bindtap="switchTab">
+    <template is="{{isLyrics}}" data="{{...songs_list, lyrics, ...lyric_item}}"></template>
+  </view>
   <view class="player-songs">
     <view class="bar">
       <text class="start-time time">{{time.toGetTime(songs_msg.currentTime)}}</text>

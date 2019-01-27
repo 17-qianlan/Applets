@@ -14,7 +14,14 @@ Page({
         openTabBoolean: false,
         songs_msg : {},
         playType: 'icon-bofang',
-        isAlreadyPlay: false
+        isAlreadyPlay: false,
+        isLyrics: 'singer',
+        lyric_item: {
+            current: 0,
+            multiple: 10,
+            currentIndex: 0,
+            duration: 300
+        }
 	},
 
 	/**
@@ -23,13 +30,12 @@ Page({
 	onLoad: function (options) {
         // const mid = options.song_mid;
         this.audio = Audio.audio;
-        this.globalData = getApp().globalData;
+        this.lyric_item = this.data.lyric_item;
         if (this.audio.paused === false) {// 条件判断必须这么写
             // this.audio.paused表示已经开始播放了
             this.setData({
                 playType: 'icon-zanting'
             });
-            console.log(1);
         }
         const addEvents = ['onError', 'onWaiting', 'onCanplay', 'onPause', 'onSeeking', 'onTimeUpdate', 'onEnded', 'onNext', 'onPrev'];
         const trigger = e => {
@@ -38,14 +44,13 @@ Page({
                 Reflect.has(this, e) && Reflect.apply(this[e], this, argument);
             }]);
         };
-        this.requestLyrics();
         addEvents.forEach(trigger);
 
         // 标题颜色
         //wx.setNavigationBarColor()
         let all = audioStorage.all();
         if (all === undefined) return false;
-        // 本地数据获取
+        // 本地数据获取 在需要本地缓存里的数据时, 请把他们都写到这的后面去, 这样才可以获取到数据
         {
             let index = 0;
             if (Array.isArray(all[index].data)) {
@@ -71,6 +76,13 @@ Page({
                 })
             })
         }
+        this.requestLyrics();
+    },
+    switchTab(){
+        console.log(1);
+        this.setData({
+            isLyrics: this.data.isLyrics === 'singer'? 'singer' : 'lyrics'
+        })
     },
     closeTab(){
         this.setData({
@@ -147,6 +159,27 @@ Page({
         this.setData({
             songs_msg: obj
         });
+        if (!this.data.lyrics && !this.data.lyrics[0]) {
+            return false;
+        };
+        // 歌曲开始播放所获取的秒数, 但是歌词返回的是毫秒数, 所以要乘以1000, 并取整
+        let currentTime = ~~(this.audio.currentTime*1000);
+        let currentIndex = this.data.lyrics.findIndex(item => {
+            return item.millisecond >= currentTime;
+        });
+        const lyrics = this.data.lyrics;
+        const len = lyrics.length-1;
+        if (currentTime >= lyrics[len].millisecond) {
+            currentIndex = len;
+        } else {
+            currentIndex = Math.max(0, --currentIndex);
+        }
+        let current = Math.max(0, currentIndex - ~~(this.lyric_item.multiple/2));
+        // 是否到达最后一页
+        current = Math.min(current, len+1 - this.lyric_item.multiple);
+        this.setData({
+            lyric_item: Object.assign(this.lyric_item, {currentIndex, current})
+        })
     },
     nextPlay(){
         const len = this.data.songs_item.length;
@@ -162,8 +195,8 @@ Page({
         });
         Audio.setSong(this.data.songs_item[this.data.current], this.data.songs_item)
     },
-    requestLyrics(){
-        const url = urlType.lyrics + '001pSNcG2XcFvl'
+    requestLyrics(){// 最开始是在onLoad里执行
+        const url = urlType.lyrics + this.data.songs_list['song_mid'];
         new Promise((resolve, reject) => {
             wx.request({
                 url,

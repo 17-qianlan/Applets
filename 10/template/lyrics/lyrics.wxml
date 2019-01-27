@@ -1,8 +1,8 @@
 <template name="lyrics">
   <view class="lyrics">
-    <swiper  vertical display-multiple-items="{{10}}">
-      <swiper-item wx:for="{{lyrics}}" wx:key="{{index}}">
-        <text>{{item.text}}</text>
+    <swiper  vertical display-multiple-items="{{multiple}}" current="{{current}}" duration="{{duration}}">
+      <swiper-item wx:for="{{lyrics}}" wx:key="{{index}}" class="{{currentIndex === index? 'on': ''}}">
+        {{item.text}}
       </swiper-item>
     </swiper>
   </view>

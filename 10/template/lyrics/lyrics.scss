@@ -12,8 +12,12 @@
         swiper-item{
             width: 100%;
             height: rpx(50);
-            //padding: rpx(10) 0;
+            font-size: rpx(36);
             text-align: center;
+            color: #ccc;
+        }
+        .on{
+            font-size: rpx(43);
             color: #fff;
         }
     }
