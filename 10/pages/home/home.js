@@ -2,7 +2,7 @@ import {urlType, sheet, region} from '../../common/url-type';
 import AudioStorage from "../../model/StorageSong";
 import Audio from '../../lib/Audio.js';
 let app = getApp();
-const audioStorageSong = new AudioStorage('audio_storage_song');
+const audioStorage = new AudioStorage('audio_storage');
 Page({
 
     /**
@@ -16,13 +16,16 @@ Page({
         banner: [],
         requestUrl: {},
         stock: false,
-        songsList: {}
+        songs_list: {},
+        playType: 'player',
+        isFirst: true
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.audio = wx.getBackgroundAudioManager();
         this.getBanner().then(data => {
             this.setData({
                 banner: data
@@ -30,19 +33,52 @@ Page({
         });
         this.setData({assort: region});
         this.getSheet().then(this.setSheets.bind(this));
-        let all = audioStorageSong.all();
-        if (all.length) {
-            this.setData({
-                songsList: all[all.length-1].data
-            });
-        };
+        let all = audioStorage.all();
+        if (all === undefined) return false;
+        // 本地数据获取
+        {
+            all.forEach(item => {
+                const data = item.data;
+                if (Array.isArray(data)) {
+                    this.setData({
+                        songs_item: data,
+                        songs: data
+                    });
+                } else if (/object/i.test(typeof data)) {
+                    this.setData({
+                        songs_list: data
+                    });
+                };
+            })
+        }
     },
     playerSong(event) {
+        // audio.paused === undefined true表示没有开始播放 false表示已经开始播放了
         const dataset = event.currentTarget.dataset;
         Audio.setSong(dataset.song, dataset.songs);
         this.setData({
-            songsList: app.globalData.songsList
-        });
+            playType: 'pause',
+            songs_list: dataset.song
+        })
+    },
+    onPlay(event){
+        const dataset = event.currentTarget.dataset;
+        if (this.audio.paused === undefined) {// 从未点击过播放
+            Audio.setSong(dataset.song, this.data.songs);
+            this.setData({
+                playType: 'pause'
+            })
+        } else if (this.audio.paused === false) {// 表示已经开始播放了
+            this.audio.pause();
+            this.setData({
+                playType: 'player',
+            })
+        } else {// 表示已经暂停了要继续播放
+            this.audio.play();
+            this.setData({
+                playType: 'pause',
+            })
+        }
     },
     requestData() {
         if (this.data.stock) {
@@ -144,6 +180,12 @@ Page({
             song: sheetData
         })
         // console.log(this.data.song);
+    },
+    detailsPlay(event){
+        const dataset = event.currentTarget.dataset;
+        wx.navigateTo({
+            url: '/pages/item/song?song_mid=' + dataset.song['song_mid']
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

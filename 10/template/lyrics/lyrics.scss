@@ -5,4 +5,16 @@
 .lyrics{
     width: 100%;
     height: rpx(970);
+    swiper{
+        height: 100%;
+        padding-top: rpx(30);
+        box-sizing: border-box;
+        swiper-item{
+            width: 100%;
+            height: rpx(50);
+            //padding: rpx(10) 0;
+            text-align: center;
+            color: #fff;
+        }
+    }
 }

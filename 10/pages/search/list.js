@@ -12,24 +12,24 @@ Page({
      * 页面的初始数据
      */
     data: {
-        songs: [],
-        songsList: {}
+        songs_item: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.audio = Audio.audio;
         this.setData({
             requestUrl: {
                 name: options.name
             }
         });
-        let all = audioStorage.all();
-        if (all.length) {
+        if (!this.audio.paused ) {
+            // this.audio.paused表示已经开始播放了
             this.setData({
-                songsList: all[all.length - 1].data
-            });
+                playType: 'pause'
+            })
         }
         this.requestData().then(this.codeData.bind(this)).catch(err => {
             console.log(err);
@@ -37,13 +37,64 @@ Page({
         wx.setNavigationBarTitle({
             title: this.data.requestUrl.name
         });
+        let all = audioStorage.all();
+        if (all === undefined) return false;
+        // 本地数据获取
+        {
+            all.forEach(item => {
+                const data = item.data;
+                if (Array.isArray(data)) {
+                    this.setData({
+                        songs_item: data,
+                        songs: data
+                    });
+                } else if (/object/i.test(typeof data)) {
+                    this.setData({
+                        songs_list: data
+                    });
+                };
+            });
+            if (!this.data.songs && this.data.songs_list) {
+                this.setData({
+                    songs: [this.data.songs_list]
+                })
+            }
+        }
     },
-    playerSong(event) {
+    playerSong(event) {// 点击歌曲播放, 需要保存歌单数据
         const dataset = event.currentTarget.dataset;
-        Audio.setSong(dataset.id);
+        Audio.setSong(dataset.song, dataset.songs);
         this.setData({
-            songsList: app.globalData.songsList
+            songs_list: dataset.song,
+            playType: 'pause'
         });
+    },
+    onPlay(event){// 点击按钮播放, 需要获取本地歌单数据
+        const dataset = event.currentTarget.dataset;
+        if (this.audio.paused === undefined) {// 从未点击过播放
+            // this.data.songs为空, 表示本地缓存为空, 在用户没有点歌曲详情播放的时候, 这里不会执行
+            // 如果用户点击按钮播放, 那么应该给个当前的数据, 然后保存到本地
+            Audio.setSong(dataset.song, this.data.songs);
+            this.setData({
+                playType: 'pause'
+            })
+        } else if (this.audio.paused === false) {// 表示已经开始播放了
+            this.audio.pause();
+            this.setData({
+                playType: 'player',
+            })
+        } else {// 表示已经暂停了要继续播放
+            this.audio.play();
+            this.setData({
+                playType: 'pause',
+            })
+        }
+    },
+    detailsPlay(event){
+        const dataset = event.currentTarget.dataset;
+        wx.navigateTo({
+            url: '/pages/item/song?song_mid=' + dataset.song['song_mid']
+        })
     },
     submitSearch(event) {
         let q = event.detail.value.sheet;
@@ -93,11 +144,10 @@ Page({
             this.setData({
                 stock: true
             })
-        }
-        ;
-        this.data.songs.push(...data.songs);
+        };
+        this.data.songs_item.push(...data.songs);
         this.setData({
-            songs: this.data.songs
+            songs_item: this.data.songs_item
         });
         wx.hideLoading();
     },

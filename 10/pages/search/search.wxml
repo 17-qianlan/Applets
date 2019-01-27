@@ -4,5 +4,5 @@
 <view class="container">
   <template is="search" data="{{q}}"></template>
   <template is="history" data="{{history}}"></template>
-  <template is="player" data="{{songsList}}"></template>
+  <template is="player" data="{{songs_list, playType}}"></template>
 </view>

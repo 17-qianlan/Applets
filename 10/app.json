@@ -1,13 +1,17 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/item/song",
     "pages/search/search",
+    "pages/home/home",
+    "pages/test/slider",
     "pages/search/list",
     "pages/list/list",
     "template/player/player",
     "template/song/song",
     "template/singer/singer",
     "template/lyrics/lyrics"
-  ]
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#B3D4DB"
+  }
 }

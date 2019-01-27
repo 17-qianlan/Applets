@@ -1,3 +1,8 @@
+import StorageSongs from '../../model/StorageSong.js';
+const audioStorage = new StorageSongs('audio_storage');
+import Audio from '../../lib/Audio.js';
+import {urlType} from "../../common/url-type.js";
+
 Page({
 
 	/**
@@ -16,32 +21,66 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-        this.audio = wx.getBackgroundAudioManager();
+        // const mid = options.song_mid;
+        this.audio = Audio.audio;
         this.globalData = getApp().globalData;
-        this.setData({
-            songs_msg: {
-                src: 'https://api.bzqll.com/music/tencent/url?key=579621905&id=003neI902C7eqX',
-                title: 'Sing Me to Sleep',
-                epName:	'Sing Me to Sleep',
-                singer:	'Alan Walker',
-                coverImgUrl:'https://y.gtimg.cn/music/photo_new/T002R90x90M0000032bxR52m4cgY.jpg',
-                song_mid: '003neI902C7eqX',
-                song_big: 'https://y.gtimg.cn/music/photo_new/T002R300x300M0000032bxR52m4cgY.jpg'
-            }
-        });
+        if (this.audio.paused === false) {// 条件判断必须这么写
+            // this.audio.paused表示已经开始播放了
+            this.setData({
+                playType: 'icon-zanting'
+            });
+            console.log(1);
+        }
         const addEvents = ['onError', 'onWaiting', 'onCanplay', 'onPause', 'onSeeking', 'onTimeUpdate', 'onEnded', 'onNext', 'onPrev'];
         const trigger = e => {
+            // 这里注意this指向问题
             Reflect.apply(this.audio[e], this, [(...argument) => {
                 Reflect.has(this, e) && Reflect.apply(this[e], this, argument);
             }]);
         };
+        this.requestLyrics();
         addEvents.forEach(trigger);
-	},
+
+        // 标题颜色
+        //wx.setNavigationBarColor()
+        let all = audioStorage.all();
+        if (all === undefined) return false;
+        // 本地数据获取
+        {
+            let index = 0;
+            if (Array.isArray(all[index].data)) {
+                this.setData({
+                    songs_item: all[index].data
+                });
+            };
+            ++index;
+            if (/object/i.test(typeof all[index].data)) {
+                this.setData({
+                    songs_list: all[index].data
+                });
+            };
+        }
+        // 标题
+        wx.setNavigationBarTitle({
+            title: this.data.songs_list.title
+        });
+	    if (this.data.songs_item) {
+            this.setData({
+                current: this.data.songs_item.findIndex(item => {
+                    return this.data.songs_list.title === item.song_name;
+                })
+            })
+        }
+    },
     closeTab(){
         this.setData({
             openTabBoolean: true,
             closeTabBoolean: false
         });
+    },
+    setSeek(event){
+        const time = event.detail.value;
+        this.audio.seek(time);
     },
     openTab(){
 	    this.setData({
@@ -49,28 +88,53 @@ Page({
             openTabBoolean: false,
         })
     },
-    onPlay(){
-	    if (!this.data.isAlreadyPlay) {
-            this.audio.src = this.data.songs_msg.src;
-            this.audio.title = this.data.songs_msg.title;
-            this.setData({
-                isAlreadyPlay: true,
-                playType: 'icon-zanting'
-            })
-            return false;
-        }
-	    if (this.data.playType === 'icon-zanting') {
-            this.setData({
-                playType: 'icon-bofang'
-            });
-            this.audio.pause();
-
-        } else {
+    onPlay(event){
+	    // audio.paused === undefined true表示没有开始播放 false表示已经开始播放了
+        if (this.audio.paused === undefined) {
+            const dataset = event.currentTarget.dataset;
+            if (!dataset.song) {
+                // 这里边只可以是第一次点击播放本地缓存的才行, 只要切换歌曲就不可以再执行里边的代码了
+                Audio.setSong(this.data.songs_list, this.data.songs_msg);
+                this.setData({
+                    playType: 'icon-zanting'
+                })
+            } else {
+                this.setData({
+                    songs_list: dataset.song
+                })
+                wx.setNavigationBarTitle({
+                    title: this.data.songs_list.title
+                })
+                Audio.setSong(dataset.song, dataset.songs);
+                // this.closeTab();
+                this.setData({
+                    playType: 'icon-zanting'
+                })
+            }
+        } else if (this.audio.paused === true) {// 播放暂停, 需要重新开始播放
             this.audio.play();
             this.setData({
                 playType: 'icon-zanting'
-            });
+            })
+        } else {
+            this.audio.pause();
+            this.setData({
+                playType: 'icon-bofang'
+            })
         }
+    },
+    playerSong(event) {
+        const dataset = event.currentTarget.dataset;
+        Audio.setSong(dataset.song, dataset.songs);
+        this.setData({
+            songs_list: dataset.song,
+            playType: 'pause'
+        });
+        this.setData({
+            current: dataset.songs.findIndex(item => {
+                return dataset.song.song_name === item.song_name;
+            })
+        })
     },
     onTimeUpdate(){
         const update = {
@@ -83,6 +147,38 @@ Page({
         this.setData({
             songs_msg: obj
         });
+    },
+    nextPlay(){
+        const len = this.data.songs_item.length;
+        this.setData({
+            current: len-2 < this.data.current? 0 : ++this.data.current
+        });
+        Audio.setSong(this.data.songs_item[this.data.current], this.data.songs_item);
+    },
+    prevPlay(){
+        const len = this.data.songs_item.length;
+        this.setData({
+            current: this.data.current === 0 ? len-1 : --this.data.current
+        });
+        Audio.setSong(this.data.songs_item[this.data.current], this.data.songs_item)
+    },
+    requestLyrics(){
+        const url = urlType.lyrics + '001pSNcG2XcFvl'
+        new Promise((resolve, reject) => {
+            wx.request({
+                url,
+                success: resolve,
+                fail: reject
+            })
+        }).then( ({data}) => {
+            const lyrics = data.lyric;
+            this.setData({
+                lyrics
+            })
+        }).catch(err => {
+            console.log(err);
+        })
+        // console.log(this.data.lyrics);
     },
 	/**
 	 * 生命周期函数--监听页面初次渲染完成

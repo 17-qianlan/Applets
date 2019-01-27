@@ -1,3 +1,9 @@
 <template name="lyrics">
-  <view class="lyrics"></view>
+  <view class="lyrics">
+    <swiper  vertical display-multiple-items="{{10}}">
+      <swiper-item wx:for="{{lyrics}}" wx:key="{{index}}">
+        <text>{{item.text}}</text>
+      </swiper-item>
+    </swiper>
+  </view>
 </template>

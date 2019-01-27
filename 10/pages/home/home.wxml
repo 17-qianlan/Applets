@@ -31,7 +31,7 @@
      </navigator>
     </view>
   </view>
-  <!--推荐歌单-->
+  <!--推荐歌曲-->
   <!-- 头部 -->
   <view class="song" wx:for="{{song}}" wx:key="{{index}}">
     <view class="song-title">
@@ -44,5 +44,5 @@
   </view>
 
   <!--底部播放条-->
-  <template is="player" data="{{songsList}}"></template>
+  <template is="player" data="{{songs_list, playType}}"></template>
 </view>

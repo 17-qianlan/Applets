@@ -1,0 +1,4 @@
+<!--pages/test/slider.wxml-->
+<view>
+  <slider stpe="4" value="10" max="100" show-value></slider>
+</view>

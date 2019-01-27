@@ -10,24 +10,42 @@ Page({
     data: {
         q: '',
         history: [],
-        songsList: {}
+        playType: 'player'
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        this.audio = Audio.audio;
         wx.setNavigationBarTitle({
             title: '搜索'
         });
-        let all = audioStorage.all();
-        if (all.length) {
-            console.log(all.length);
+        if (!this.audio.paused ) {
+            // this.audio.paused表示已经开始播放了
             this.setData({
-                songsList: all[all.length - 1].data
-            });
+                playType: 'pause'
+            })
         }
         this.update();
+        let all = audioStorage.all();
+        if (all === undefined) return false;
+        // 本地数据获取
+        {
+            all.forEach(item => {
+                const data = item.data;
+                if (Array.isArray(data)) {
+                    this.setData({
+                        songs_item: data,
+                        songs: data
+                    });
+                } else if (/object/i.test(typeof data)) {
+                    this.setData({
+                        songs_list: data
+                    });
+                };
+            })
+        }
     },
     submitSearch(event) {
         let q = event.detail.value.sheet;
@@ -56,8 +74,37 @@ Page({
         this.update();
     },
     playerSong(event) {
-        let song = event.currentTarget.dataset.id;
-        Audio.setSong(song);
+        const dataset = event.currentTarget.dataset;
+        Audio.setSong(dataset.song, dataset.songs);
+        this.setData({
+            songs_list: dataset.song,
+            playType: 'pause'
+        });
+    },
+    onPlay(event){
+        const dataset = event.currentTarget.dataset;
+        if (this.audio.paused === undefined) {// 从未点击过播放
+            Audio.setSong(dataset.song, this.data.songs);
+            this.setData({
+                playType: 'pause'
+            })
+        } else if (this.audio.paused === false) {// 表示已经开始播放了
+            this.audio.pause();
+            this.setData({
+                playType: 'player',
+            })
+        } else {// 表示已经暂停了要继续播放
+            this.audio.play();
+            this.setData({
+                playType: 'pause',
+            })
+        }
+    },
+    detailsPlay(event){
+        const dataset = event.currentTarget.dataset;
+        wx.navigateTo({
+            url: '/pages/item/song?song_mid=' + dataset.song['song_mid']
+        })
     },
     /**
      * 生命周期函数--监听页面初次渲染完成

@@ -1,11 +1,11 @@
 <template name="player">
   <view class="player">
-    <image src="{{songsList.coverImgUrl}}" class="avatar fl"></image>
-    <view class="song-information fl">
-      <text class="name-song">{{songsList.title}}</text>
-      <text class="singer">{{songsList.singer}}</text>
+    <image src="{{songs_list.coverImgUrl || songs_list.album_min}}" class="avatar fl"  bindtap="detailsPlay" data-song="{{songs_list}}"></image>
+    <view class="song-information fl"  bindtap="detailsPlay" data-song="{{songs_list}}">
+      <text class="name-song">{{songs_list.title || songs_list.song_name}}</text>
+      <text class="singer">{{songs_list.singer ||  songs_list.song_orig}}</text>
     </view>
-    <image src="/images/icon/next.png" class="next fr"></image>
-    <image src="/images/icon/player.png" class="play fr" bindtap="playerSong" data-songs="{{songsList}}"></image>
+    <image src="/images/icon/next.png" class="next fr" data-song="{{songs_list}}"></image>
+    <image src="/images/icon/{{playType}}.png" class="play fr" bindtap="onPlay" data-song="{{songs_list}}"></image>
   </view>
 </template>

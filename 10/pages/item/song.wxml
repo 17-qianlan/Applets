@@ -5,29 +5,30 @@
 
 
 <view class="container">
-  <template is="singer"></template>
+  <template is="lyrics" data="{{...songs_list}}" data="{{lyrics}}"></template>
   <view class="player-songs">
     <view class="bar">
       <text class="start-time time">{{time.toGetTime(songs_msg.currentTime)}}</text>
       <view class="progress-bar">
-        <slider step="5" block-size="14" activeColor="#d0b4b4" step="1" value="{{songs_msg.currentTime || 0}}" max="{{songs_msg.duration || 0}}"/>
+        <slider step="1"  activeColor="#d0b4b4" value="{{~~songs_msg.currentTime || 0}}" max="{{~~songs_msg.duration || 0}}" bindchange="setSeek" />
       </view>
       <text class="end-time time">{{time.toGetTime(songs_msg.duration)}}</text>
     </view>
     <view class="btn">
       <view class="iconfont icon-xunhuan icon"></view>
-      <view class="iconfont icon-shangyiqu icon"></view>
+      <view class="iconfont icon-shangyiqu icon" bindtap="prevPlay"></view>
       <view class="iconfont {{playType}} icon" bindtap="onPlay"></view>
-      <view class="iconfont icon-xiayiqu icon"></view>
+      <view class="iconfont icon-xiayiqu icon" bindtap="nextPlay"></view>
       <view class="iconfont icon-menu icon" bindtap="openTab"></view>
     </view>
   </view>
+  <!--歌单列表-->
   <view class="current-list {{closeTabBoolean? 'show': ''}} {{openTabBoolean? 'hide': ''}}">
     <view class="title">
       <view class="left">
         <text class="iconfont icon-liebiaoxunhuan"></text>
         <text class="iconfont"> 列表循环</text>
-        <text class="iconfont">( 10 )</text>
+        <text class="iconfont"> ({{songs_item.length}})</text>
       </view>
       <view class="right">
         <text class="iconfont icon-guanbi" bindtap="closeTab"></text>
@@ -35,10 +36,10 @@
     </view>
     <scroll-view scroll-y>
       <view class="song-item">
-        <view class="item" wx:for="00000000000" wx:key="{{index}}">
+        <view class="item" wx:for="{{songs_item}}" wx:key="{{index}}" bindtap="playerSong" data-song="{{item}}" data-songs="{{songs_item}}">
           <view class="song-msg {{index === current? 'on': ''}}">
-            <text class="song">离人殇</text> -
-            <text class="singer">赵方婧</text>
+            <text class="song">{{item.song_name}}</text> -
+            <text class="singer">{{item.song_orig}}</text>
           </view>
           <view class="iconfont icon-guanbi2 close"></view>
         </view>

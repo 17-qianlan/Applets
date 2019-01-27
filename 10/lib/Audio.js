@@ -17,17 +17,18 @@ export default class Audio{
     static setSong(song, songs) {
         const AudioAttr = {
             // src: urlType.music,
-            src: " https://api.bzqll.com/music/tencent/url?key=579621905&id="+song['song_mid'],
+            src: 'https://api.bzqll.com/music/tencent/url?key=579621905&id=' + song['song_mid'],
             title: song.song_name || song.title,
-            epName: song.album_name || song.epName,// 专辑
+            eqname: song.album_name || song.eqname,// 专辑
             singer: song.song_orig || song.singer, // 歌手
-            coverImgUrl: song.album_min || song.coverImgUrl, // 封面
+            coverImgUrl: song.album_min || song.coverImgUrl, // 封面/小图
             song_mid: song['song_mid'],
             song_big: song['album_big'] // 大图
         }
         // 设置了audio.src会自动播放   合并到audio里, 因为audio也是个对象
         Object.assign(audio, AudioAttr);
         Audio.saveSong(AudioAttr, songs);
+        return {AudioAttr};
     }
     // 保存歌曲信息(缓存)
     static saveSong(song, songs) {

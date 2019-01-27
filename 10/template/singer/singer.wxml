@@ -3,7 +3,7 @@
     <swiper class="photo" duration="500" scroll-x>
       <swiper-item>
         <view class="img">
-          <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548257199028&di=7b29d8928c1d1f45e3c6262a84060126&imgtype=0&src=http%3A%2F%2Fimg2.mtime.cn%2Fup%2F1462%2F1407462%2FC1FD48FA-CDD1-4701-9C21-78F13967C2FB_500.jpg"></image>
+          <image src="{{coverImgUrl || album_big}}"></image>
         </view>
       </swiper-item>
       <swiper-item>

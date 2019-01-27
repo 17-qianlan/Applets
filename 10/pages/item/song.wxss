@@ -9,6 +9,17 @@
   width: 100%;
   height: 970rpx;
 }
+.container .lyrics swiper {
+  height: 100%;
+  padding-top: 30rpx;
+  box-sizing: border-box;
+}
+.container .lyrics swiper swiper-item {
+  width: 100%;
+  height: 50rpx;
+  text-align: center;
+  color: #fff;
+}
 .container .msg {
   width: 100%;
   height: 970rpx;
