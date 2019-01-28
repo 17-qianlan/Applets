@@ -1,0 +1,51 @@
+<wxs src="../../common/time.wxs"  module="time"/>
+<import src="../../template/lyrics/lyrics.wxml" />
+<import src="../../template/singer/singer.wxml" />
+
+
+
+<view class="container">
+  <view class="lyrics_singer"  bindtap="switchTab">
+    <template is="{{isLyrics}}" data="{{...songs_list, lyrics, ...lyric_item}}"></template>
+  </view>
+  <view class="player-songs">
+    <view class="bar">
+      <text class="start-time time">{{time.toGetTime(songs_msg.currentTime)}}</text>
+      <view class="progress-bar">
+        <slider step="1"  activeColor="#d0b4b4" value="{{~~songs_msg.currentTime || 0}}" max="{{~~songs_msg.duration || 0}}" bindchange="setSeek" />
+      </view>
+      <text class="end-time time">{{time.toGetTime(songs_msg.duration)}}</text>
+    </view>
+    <view class="btn">
+      <view class="iconfont icon-xunhuan icon"></view>
+      <view class="iconfont icon-shangyiqu icon" bindtap="prevPlay"></view>
+      <view class="iconfont {{playType}} icon" bindtap="onPlay"></view>
+      <view class="iconfont icon-xiayiqu icon" bindtap="nextPlay"></view>
+      <view class="iconfont icon-menu icon" bindtap="openTab"></view>
+    </view>
+  </view>
+  <!--歌单列表-->
+  <view class="current-list {{closeTabBoolean? 'show': ''}} {{openTabBoolean? 'hide': ''}}">
+    <view class="title">
+      <view class="left">
+        <text class="iconfont icon-liebiaoxunhuan"></text>
+        <text class="iconfont"> 列表循环</text>
+        <text class="iconfont"> ({{songs_item.length}})</text>
+      </view>
+      <view class="right">
+        <text class="iconfont icon-guanbi" bindtap="closeTab"></text>
+      </view>
+    </view>
+    <scroll-view scroll-y>
+      <view class="song-item">
+        <view class="item" wx:for="{{songs_item}}" wx:key="{{index}}" bindtap="playerSongsList" data-song="{{item}}" data-songs="{{songs_item}}" wx:for-index="i">
+          <view class="song-msg {{index === i? 'on': ''}}">
+            <text class="song">{{item.song_name}}</text> -
+            <text class="singer">{{item.song_orig}}</text>
+          </view>
+          <view class="iconfont icon-guanbi2 close"></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

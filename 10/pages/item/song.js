@@ -81,7 +81,7 @@ Page({
     switchTab(){
         console.log(1);
         this.setData({
-            isLyrics: this.data.isLyrics === 'singer'? 'singer' : 'lyrics'
+            isLyrics: this.data.isLyrics === 'singer'? 'lyrics' : 'singer'
         })
     },
     closeTab(){

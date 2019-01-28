@@ -1,0 +1,11 @@
+<import src="../../public/search.wxml" />
+<import src="../../template/player/player.wxml"/>
+<import src="../../template/song/song.wxml"/>
+
+<view class="container">
+  <template is="search" data="{{q}}"></template>
+  <scroll-view scroll-y  bindscrolltolower="morePage" lower-threshold="80">
+    <template is="song" data="{{songs}}"></template>
+  </scroll-view>
+  <template is="player" data="{{songs_list, playType}}"></template>
+</view>

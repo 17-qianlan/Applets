@@ -1,0 +1,24 @@
+.history-list {
+  width: 100%;
+}
+.history-list .item {
+  display: flex;
+  width: 89%;
+  height: 40rpx;
+  padding: 30rpx 20rpx;
+}
+.history-list .item navigator {
+  display: block;
+  flex: 1;
+  padding: 0 0 60rpx 10rpx;
+  border-bottom: 1rpx solid #ccc;
+  line-height: 40rpx;
+}
+.history-list .item image {
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 10rpx;
+}
+
+/*# sourceMappingURL=history.wxss.map */

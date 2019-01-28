@@ -1,0 +1,48 @@
+<import src="../../template/song/song.wxml" />
+<import src="../../template/player/player.wxml" />
+<wxs src="../../common/function.wxs" module="commonUrl"></wxs>
+
+<view id="music">
+  <!--头部导航-->
+  <view class="header-nav">
+    <view class="header-nav-list">
+      <!--<navigator hover-class="on" class="on" wx:for="{{['推荐', '歌单', '搜索']}}" wx:key="{{index}}">{{item}}</navigator>-->
+      <navigator hover-class="on">推荐</navigator>
+      <navigator hover-class="on">歌单</navigator>
+      <navigator hover-class="on" url="/pages/search/search">搜索</navigator>
+    </view>
+  </view>
+  <!--轮播图-->
+  <view class="banner">
+    <view class="banner-list">
+      <swiper autoplay="{{true}}" indicator-color="#fff" indicator-active-color="pink" indicator-dots="{{true}}" circular="{{true}}">
+        <swiper-item wx:for="{{banner}}" wx:key="{{index}}"  bindtap="actionsBanner" data-action="{{item}}">
+          <image src="{{item.src}}" mode="widthFix"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <!--国家地区 分类-->
+  <view class="assort">
+    <view class="assort-list" wx:for="{{assort}}" wx:key="{{index}}">
+     <navigator url="{{commonUrl.sheetUrl(item)}}">
+       <image src="/images/icon/music.png" mode="widthFix"></image>
+       <text>{{item.name}}</text>
+     </navigator>
+    </view>
+  </view>
+  <!--推荐歌曲-->
+  <!-- 头部 -->
+  <view class="song" wx:for="{{song}}" wx:key="{{index}}">
+    <view class="song-title">
+      <navigator hover-class="none" url="{{commonUrl.sheetUrl({name: item.name,id: item.id})}}">
+        <image src="/images/icon/enum.png" mode="widthFix"></image>
+        <text>{{item.name}}</text>
+      </navigator>
+    </view>
+    <template is="song" data="{{...item}}"></template>
+  </view>
+
+  <!--底部播放条-->
+  <template is="player" data="{{songs_list, playType}}"></template>
+</view>

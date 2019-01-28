@@ -1,0 +1,8 @@
+<import src="../../template/player/player.wxml" />
+<import src="../../public/h.wxml" />
+<import src="../../public/search.wxml" />
+<view class="container">
+  <template is="search" data="{{q}}"></template>
+  <template is="history" data="{{history}}"></template>
+  <template is="player" data="{{songs_list, playType}}"></template>
+</view>

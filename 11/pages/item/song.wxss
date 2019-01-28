@@ -1,0 +1,197 @@
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(#636d6d 0%, black 90%);
+  overflow: hidden;
+}
+.container .lyrics {
+  width: 100%;
+  height: 970rpx;
+}
+.container .lyrics swiper {
+  height: 100%;
+  padding-top: 30rpx;
+  box-sizing: border-box;
+}
+.container .lyrics swiper swiper-item {
+  width: 100%;
+  height: 50rpx;
+  font-size: 36rpx;
+  text-align: center;
+  color: #ccc;
+}
+.container .lyrics swiper .on {
+  font-size: 43rpx;
+  color: #fff;
+}
+.container .msg {
+  width: 100%;
+  height: 970rpx;
+  padding: 10rpx 0;
+}
+.container .msg .photo {
+  width: 100%;
+  height: 900rpx;
+}
+.container .msg .photo .img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1) 240rpx, transparent 241rpx) no-repeat center center/900rpx 900rpx;
+}
+.container .msg .photo image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 450rpx;
+  height: 450rpx;
+  border-radius: 50%;
+}
+.container .msg .details {
+  display: flex;
+  width: 85%;
+  height: 70rpx;
+  margin: auto;
+}
+.container .msg .details view {
+  flex: 1;
+  color: #ccc;
+  font-size: 60rpx;
+  text-align: center;
+  font-weight: normal;
+}
+.container .player-songs {
+  width: 100%;
+  height: 330rpx;
+}
+.container .player-songs .bar {
+  width: 90%;
+  height: 60rpx;
+  margin: auto;
+  /*.progress-bar::before{
+      position: absolute;
+      top: rpx(-15);
+      left: rpx(-1);
+      content: '.';
+      width: rpx(30);
+      height: rpx(30);
+      border-radius: 50%;
+      background: #fff;
+      color: red;
+      text-align: center;
+      line-height: rpx(8);
+  }*/
+}
+.container .player-songs .bar .time {
+  display: inline-block;
+  width: 9%;
+  color: red;
+  font-size: 25rpx;
+  vertical-align: middle;
+}
+.container .player-songs .bar .progress-bar {
+  display: inline-block;
+  position: relative;
+  width: 76%;
+  margin: 0 1%;
+  vertical-align: middle;
+}
+.container .player-songs .btn {
+  display: flex;
+  width: 87%;
+  height: 190rpx;
+  padding: 40rpx 0;
+  margin: auto;
+}
+.container .player-songs .btn view {
+  flex: 1;
+  color: #ccc;
+  font-size: 65rpx;
+  text-align: center;
+}
+.container .current-list {
+  position: absolute;
+  bottom: -610rpx;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  background: #fff;
+  overflow: hidden;
+  z-index: 999;
+}
+.container .current-list .title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #eee;
+}
+.container .current-list .title view {
+  font-size: 40rpx;
+}
+.container .current-list ::-webkit-scrollbar {
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #ccc;
+}
+.container .current-list scroll-view {
+  width: 100%;
+  height: 100%;
+}
+.container .current-list scroll-view .song-item {
+  width: 100%;
+  height: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+.container .current-list scroll-view .song-item .item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60rpx;
+  border-bottom: 1rpx solid #eee;
+  line-height: 60rpx;
+}
+.container .current-list scroll-view .song-item .item .song-msg .song {
+  font-size: 40rpx;
+}
+.container .current-list scroll-view .song-item .item .song-msg .singer {
+  font-size: 30rpx;
+}
+.container .show {
+  animation: show 1s 1 forwards;
+}
+.container .hide {
+  animation: hide 1s 1 forwards;
+}
+
+.on {
+  color: green;
+}
+
+@keyframes show {
+  from {
+    bottom: -610rpx;
+  }
+  to {
+    bottom: 0rpx;
+  }
+}
+@keyframes hide {
+  from {
+    bottom: 0rpx;
+  }
+  to {
+    bottom: -610rpx;
+  }
+}
+
+/*# sourceMappingURL=song.wxss.map */

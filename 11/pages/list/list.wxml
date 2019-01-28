@@ -1,0 +1,8 @@
+<import src="../../template/song/song.wxml" />
+<import src="../../template/player/player.wxml" />
+
+<scroll-view scroll-y bindscrolltolower="morePage" lower-threshold="80">
+  <template is="song" data="{{songs}}"></template>
+  <template is="player" data="{{songs_list, playType}}"></template>
+</scroll-view>
+

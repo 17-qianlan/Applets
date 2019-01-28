@@ -1,0 +1,99 @@
+.container {
+  position: relative;
+  width: 750rpx;
+  height: auto;
+}
+.container .search {
+  width: 100%;
+  background: #b3d4db;
+}
+.container .search form {
+  display: block;
+  width: 90%;
+  padding: 5rpx 20rpx;
+  margin: auto;
+  overflow: hidden;
+}
+.container .search form input {
+  width: 89%;
+  height: 30rpx;
+  border-bottom: 2rpx solid #fff;
+}
+.container .search form button:after {
+  border: 0;
+}
+.container .search form button {
+  width: 60rpx;
+  height: 60rpx;
+  padding: 0;
+  margin: 0 10rpx 0 0;
+  background: transparent;
+}
+.container .search form button image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.container .history-list {
+  width: 100%;
+}
+.container .history-list .item {
+  display: flex;
+  width: 89%;
+  height: 40rpx;
+  padding: 30rpx 20rpx;
+}
+.container .history-list .item navigator {
+  display: block;
+  flex: 1;
+  padding: 0 0 60rpx 10rpx;
+  border-bottom: 1rpx solid #ccc;
+  line-height: 40rpx;
+}
+.container .history-list .item image {
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 10rpx;
+}
+.container .player {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  padding: 10rpx;
+  overflow: hidden;
+  z-index: 1000;
+}
+.container .player .song-information {
+  display: block;
+  width: 400rpx;
+  margin-left: 10rpx;
+}
+.container .player .song-information text {
+  display: block;
+  font-size: 35rpx;
+}
+.container .player .song-information text:nth-child(2) {
+  margin: 10rpx 0 0 10rpx;
+  font-size: 27rpx;
+}
+.container .player .next {
+  margin-right: 20rpx;
+}
+.container .player .play {
+  margin-right: 20rpx;
+}
+.container .player image {
+  width: 100rpx;
+  height: 100rpx;
+}
+.container .player .icon {
+  color: #A39C9C;
+  text-align: center;
+  font-size: 95rpx;
+}
+
+/*# sourceMappingURL=search.wxss.map */

@@ -1,0 +1,20 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+
+.container{
+    position: relative;
+    width: rpx(750);
+    height: auto;
+    @import "../../public/search.scss";
+    scroll-view{
+        display: block;
+        height: 94vh;
+        .song-list{
+            padding: rpx(20);
+            box-sizing: border-box;
+        }
+    }
+    @import "../../template/song/song.scss";
+    @import "../../template/player/player.scss";
+}

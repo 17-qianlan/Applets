@@ -1,0 +1,10 @@
+<template name="search">
+  <view class="search">
+    <form bindsubmit="submitSearch">
+      <input type="text" class="fl" name="sheet" value="{{q}}"/>
+      <button hover-class="none" form-type="submit" class="fr">
+        <image src="../../images/icon/search.png"></image>
+      </button>
+    </form>
+  </view>
+</template>

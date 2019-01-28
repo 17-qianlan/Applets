@@ -1,0 +1,43 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+.player {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: rpx(100);
+    background: #fff;
+    padding: rpx(10);
+    overflow: hidden;
+    z-index: 1000;
+    .song-information {
+        display: block;
+        width: rpx(400);
+        margin-left: rpx(10);
+        //line-height: rpx(100);
+        text {
+            display: block;
+            font-size: rpx(35);
+        }
+        text:nth-child(2) {
+            margin: rpx(10) 0 0 rpx(10);
+            font-size: rpx(27);
+        }
+    }
+    .next {
+        margin-right: rpx(20);
+    }
+    .play{
+        margin-right: rpx(20);
+    }
+    image {
+        width: rpx(100);
+        height: rpx(100);
+    }
+    .icon{
+        color: #A39C9C;
+        text-align: center;
+        font-size: rpx(95);
+    }
+}

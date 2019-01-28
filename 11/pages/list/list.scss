@@ -1,0 +1,13 @@
+@function rpx($val) {
+    @return $val * 1rpx;
+}
+@import "../../template/song/song.scss";
+scroll-view{
+    display: block;
+    height: 100vh;
+    .song-list{
+        padding: rpx(20);
+        box-sizing: border-box;
+    }
+}
+@import "../../template/player/player.scss";
